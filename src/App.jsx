@@ -7,7 +7,7 @@ const NavBar = ({ activeSection, scrollToSection, isMenuOpen, setIsMenuOpen }) =
   <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between h-16">
-        <div className="text-xl font-bold text-gray-900">Vraj Vyas</div>
+        <div className="text-2xl font-bold text-gray-900 flex flex-row justify-center items-center gap-4 pacifico-regular"><img src='logo.png' alt='logo' className=' w-14 h-14'/>Vraj Vyas</div>
         <div className="hidden md:flex space-x-8">
           {['home', 'about', 'skills', 'education', 'work', 'contact'].map((section) => (
             <button
