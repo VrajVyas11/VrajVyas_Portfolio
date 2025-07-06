@@ -19,3 +19,87 @@
 .animate-subtle-bounce {
   animation: subtle-bounce 2s ease-in-out infinite;
 }
+
+
+        @keyframes subtle-bounce {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        
+        .animate-subtle-bounce {
+          animation: subtle-bounce 3s ease-in-out infinite;
+        }
+        
+        .spinning-border-container {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .spinning-border-container::before,
+        .spinning-border-container::after {
+          content: '';
+          position: absolute;
+          top: -4px;
+          left: -4px;
+          right: -4px;
+          bottom: -4px;
+          border-radius: 999px;
+          background: conic-gradient(
+            from 0deg,
+            rgba(14, 165, 233, 0.9),
+            rgba(14, 165, 233, 0.7),
+            rgba(14, 165, 233, 0.2),
+            transparent,
+            transparent,
+            rgba(14, 165, 233, 0.5),
+            rgba(14, 165, 233, 0.7),
+            rgba(14, 165, 233, 0.1)
+          );
+          animation: spin-border 8s linear infinite;
+          z-index: -1;
+        }
+        
+
+        /* Alternative approach using clip-path for more precise control */
+        .spinning-border-container {
+          --border-width: 6px;
+          --border-color: #3d99f0;
+        }
+        
+        .spinning-border-container::before {
+          background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--border-color) 180deg
+            transparent 180deg,
+            var(--border-color) 180deg,
+            var(--border-color) 180deg,
+            var(--border-color) 180deg,
+            transparent 360deg
+          );
+          -webkit-mask: radial-gradient(circle at center, transparent calc(70% - var(--border-width)), black calc(70% - var(--border-width)));
+          mask: radial-gradient(circle at center, transparent calc(70% - var(--border-width)), black calc(70% - var(--border-width)));
+          animation: spin 7s linear infinite;
+        }
+        
+        .spinning-border-container::after {
+          background: conic-gradient(
+            from 50deg,
+            var(--border-color) 50deg,
+            transparent 90deg,
+            transparent 180deg,
+            var(--border-color) 180deg,
+            var(--border-color) 180deg,
+            transparent 270deg,
+            transparent 360deg
+          );
+          -webkit-mask: radial-gradient(circle at center, transparent calc(70% - var(--border-width)), black calc(70% - var(--border-width)));
+          mask: radial-gradient(circle at center, transparent calc(70% - var(--border-width)), black calc(70% - var(--border-width)));
+          animation: spin 7s linear infinite;
+          animation-delay: -4s;
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(360deg); }
+          100% { transform: rotate(0deg); }
+        }

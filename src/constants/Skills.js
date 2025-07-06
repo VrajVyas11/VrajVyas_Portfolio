@@ -75,7 +75,7 @@ const skillsData = [
             { name: "GitHub Actions", icon: "https://img.icons8.com/color/48/000000/github.png" },
             { name: "AWT", icon: "https://img.icons8.com/color/48/000000/java-coffee-cup-logo.png" },
             { name: "Deployment Automation", icon: "https://img.icons8.com/ios-filled/50/000000/server.png" },
-        { name: "Postman", icon: "https://img.icons8.com/?size=100&id=EPbEfEa7o8CB&format=png&color=000000" },
+            { name: "Postman", icon: "https://img.icons8.com/?size=100&id=EPbEfEa7o8CB&format=png&color=000000" },
             { name: "NPM", icon: "https://img.icons8.com/?size=100&id=24895&format=png&color=000000" },
         ],
     },
