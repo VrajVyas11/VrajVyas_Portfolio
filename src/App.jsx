@@ -156,7 +156,7 @@ const Portfolio = () => {
               ))}
             </div>
             {/* Timeline Bar with Years */}
-            <div className="relative flex justify-center items-center w-8 sm:w-12 md:w-16 lg:w-24 flex-shrink-0">
+            <div className="relative md:flex hidden justify-center items-center w-8 sm:w-12 md:w-16 lg:w-24 flex-shrink-0">
               <div className='w-12 sm:w-16 md:w-20 inset-0 inset-x-2 absolute border-double border-b-4 sm:border-b-6 md:border-b-8 border-gray-800/50 h-1 backdrop-blur-xl rounded-full' />
               <div
                 className={`absolute w-0.5 sm:w-1 h-full ${darkMode
@@ -179,24 +179,28 @@ const Portfolio = () => {
       </section>
 
       {/* Work Section */}
-      <section
-        id="work"
-        className={`py-20 transition-all duration-500 ${darkMode ? "text-gray-300" : "bg-gray-200/50 text-gray-900"
+     
+       <section
+        id="education"
+        className={`py-12 sm:py-20 transition-all duration-500 ${darkMode ? "bg-[#03050e]/90 text-white" : "bg-white/50 text-gray-900"
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4 flex flex-row justify-center items-center gap-4">
-              <img
+          <div className="text-center mb-8 sm:mb-12 relative">
+            <div className="relative z-10 flex flex-col items-center">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 flex flex-row justify-center items-center gap-3 sm:gap-4">
+                <img
                 src={`https://img.icons8.com/?size=80&id=58808&format=png&color=${darkMode ? "ffffff" : "000000"
                   }`}
-                alt="Projects "
-              />
-              Featured Projects
-            </h2>
-            <p className="text-xl max-w-3xl mx-auto">
-              A selection of my GitHub projects showcasing my development skills
-            </p>
+                  alt="education "
+                  className="w-10 h-10 sm:w-14 sm:h-14"
+                />
+                Featured Projects
+              </h2>
+              <p className="text-base sm:text-lg max-w-2xl mx-auto">
+                  A selection of my GitHub projects showcasing my development skills
+              </p>
+            </div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map((project, index) => (

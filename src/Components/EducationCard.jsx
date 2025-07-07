@@ -29,7 +29,7 @@ const EducationCard = ({
                     className="rounded-2xl w-20 sm:w-28 ml-4 sm:ml-6 h-20 sm:h-28 object-cover shadow-sm"
                 />
             </div>
-            <div className="col-span-12 md:col-span-10 flex flex-col justify-center">
+            <div className="col-span-12 text-center md:text-left md:col-span-10 flex flex-col justify-center">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2 sm:mb-3">
                     <div>
                         <h3 className={`text-lg sm:text-2xl font-bold mb-0 ${darkMode ? "text-gray-100" : "text-gray-900"}`}>

@@ -54,7 +54,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                     <div className="space-y-6 sm:space-y-8 col-span-12 lg:col-span-7 order-2 lg:order-1 mt-8 lg:mt-0">
                         <div className="space-y-4 sm:space-y-6">
                             <div
-                                className={`text-sm sm:text-[18px] w-full font-bold leading-[16px] tracking-[0.3em] mb-3 sm:mb-5 uppercase ${darkMode ? "text-[#ffffff]" : "text-[#000000]"
+                                className={`text-sm sm:text-[18px] w-full font-bold leading-[16px] tracking-[0.3em] mb-0 sm:mb-5 uppercase ${darkMode ? "text-[#ffffff]" : "text-[#000000]"
                                     }`}
                             >
                                 i'm {" "}
@@ -73,7 +73,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                                 </span>
                             </div>
                             <div
-                                className={`mb-4 sm:mb-6 w-full text-4xl sm:text-5xl md:text-6xl font-extrabold ${darkMode ? "text-white" : "text-black"
+                                className={`mb-0 sm:mb-6 w-full text-4xl sm:text-5xl md:text-6xl font-extrabold ${darkMode ? "text-white" : "text-black"
                                     }`}
                             >
                                 I'm a{" "}
@@ -137,10 +137,10 @@ const AnimatedHeroSection = ({ darkMode }) => {
                             className={`relative z-20 -mt-12 rounded-full transform w-full animate-subtle-bounce duration-300 h-fit hover:-translate-y-1 flex justify-center lg:justify-end items-center transition-all ${darkMode ? "" : ""
                                 }`}
                         >
-                            <div className="spinning-border-container">
+                            <div className="spinning-border-container mt-16 md:mt-0">
                                 <img
                                     src="/hero.png"
-                                    className={`w-[280px] sm:w-[380px] md:w-[480px] ${darkMode ? "bg-[#03050e]" : "bg-gray-200 backdrop-blur-md"
+                                    className={`w-[180px]  sm:w-[380px] md:w-[480px] ${darkMode ? "bg-[#03050e]" : "bg-gray-200 backdrop-blur-md"
                                         } rounded-full transform scale-x-[-1] h-auto relative z-10`}
                                     style={{
                                         filter: darkMode

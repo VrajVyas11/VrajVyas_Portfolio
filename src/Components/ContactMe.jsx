@@ -12,23 +12,27 @@ import {
 
 function ContactMe({darkMode=true}) {
     return (
-        <section
-            id="contact"
-            className={`py-20 pb-10 transition-all duration-500 ${darkMode ? "bg-[#03050e]/90 text-white" : "bg-white/50 text-gray-900"
-                }`}
-        >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl font-bold mb-4 flex flex-row justify-center items-center gap-4">
-                        <Headset strokeWidth={3} className="w-16 h-16" />
-                        Get In Touch
-                    </h2>
-                    <p className="text-xl max-w-3xl mx-auto">
-                        Interested in collaborating? Reach out to discuss your project!
-                    </p>
-                </div>
+                 <section
+        id="education"
+        className={`py-12 sm:py-20 transition-all duration-500 ${darkMode ? "bg-[#03050e]/90 text-white" : "bg-white/50 text-gray-900"
+          }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8 sm:mb-12 relative">
+            <div className="relative z-10 flex flex-col items-center">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 flex flex-row justify-center items-center gap-3 sm:gap-4">
+                <Headset strokeWidth={3} 
+                  className="w-10 h-10 sm:w-14 sm:h-14"
+                />
+                Get In Touch
+              </h2>
+              <p className="text-base sm:text-lg max-w-2xl mx-auto">
+                  Interested in collaborating? Reach out to discuss your project!
+              </p>
+            </div>
+          </div>
                 <div className="grid md:grid-cols-2 gap-12">
-                    <div className="space-y-8 relative">
+                    <div className="space-y-8 relative hidden md:block">
                         <div className="flex justify-center relative z-10">
                             <img
                                 src="/contact.png"
