@@ -48,7 +48,7 @@ const ProjectCard = ({
                         <img
                             src={image}
                             alt={title}
-                            className="w-full h-full object-cover transition-all duration-500 group-hover:brightness-50 group-hover:scale-105"
+                            className="w-full h-full object-center transition-all duration-500 group-hover:brightness-50 group-hover:scale-105"
                         />
                     )
                 ) : (
@@ -83,7 +83,7 @@ const ProjectCard = ({
                             </span>
                         ))}
                     </div>
-                    <div className="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
+                    <div className="flex flex-row justify-between items-center gap-2 sm:gap-4">
                         <a
                             href={githubLink}
                             target="_blank"
@@ -91,7 +91,7 @@ const ProjectCard = ({
                             className="flex items-center text-white hover:text-gray-200 transition-colors text-xs sm:text-sm"
                         >
                             <Github className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                            <span>View on GitHub</span>
+                            <span>Project's GitHub</span>
                         </a>
                         <a
                             href={link}
@@ -100,7 +100,7 @@ const ProjectCard = ({
                             className="flex items-center text-white hover:text-gray-200 transition-colors text-xs sm:text-sm"
                         >
                             <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
-                            <span>View Project</span>
+                            <span>View</span>
                         </a>
                     </div>
                 </div>

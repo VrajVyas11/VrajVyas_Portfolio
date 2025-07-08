@@ -50,11 +50,11 @@ const AnimatedHeroSection = ({ darkMode }) => {
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-8 w-full">
-                <div className="grid lg:grid-cols-12 gap-8 sm:gap-14 items-center">
-                    <div className="space-y-6 sm:space-y-8 col-span-12 lg:col-span-7 order-2 lg:order-1 mt-8 lg:mt-0">
+                <div className="flex flex-col-reverse md:grid lg:grid-cols-12 gap-8 sm:gap-14 items-center">
+                    <div className="space-y-6 relative z-40 sm:space-y-8 col-span-12 lg:col-span-7 order-2 lg:order-1 mt-8 lg:mt-0">
                         <div className="space-y-4 sm:space-y-6">
                             <div
-                                className={`text-sm sm:text-[18px] w-full font-bold leading-[16px] tracking-[0.3em] mb-0 sm:mb-5 uppercase ${darkMode ? "text-[#ffffff]" : "text-[#000000]"
+                                className={`text-xs sm:text-[18px] w-full font-bold leading-[16px] tracking-[0.3em] mb-0 sm:mb-5 uppercase ${darkMode ? "text-[#ffffff]" : "text-[#000000]"
                                     }`}
                             >
                                 i'm {" "}
@@ -73,7 +73,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                                 </span>
                             </div>
                             <div
-                                className={`mb-0 sm:mb-6 w-full text-4xl sm:text-5xl md:text-6xl font-extrabold ${darkMode ? "text-white" : "text-black"
+                                className={`mb-0 sm:mb-6 w-full text-3xl sm:text-5xl md:text-6xl font-extrabold ${darkMode ? "text-white" : "text-black"
                                     }`}
                             >
                                 I'm a{" "}
@@ -98,7 +98,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                                 technologies.
                             </p>
                         </div>
-                        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+                        <div className="flex flex-row items-center gap-3 sm:gap-4">
                             <div className="text-white">
                                 <Button
                                     onClick={() => scrollToSection("work")}
@@ -131,7 +131,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="relative col-span-12 lg:col-span-5 order-1 lg:order-2">
+                    <div className="absolute z-20 top-[35%] left-1/2 opacity-60 md:top-auto md:left-auto md:opacity-100 md:relative col-span-12 lg:col-span-5 order-1 lg:order-2">
                         {/* Hero Image with spinning border */}
                         <div
                             className={`relative z-20 -mt-12 rounded-full transform w-full animate-subtle-bounce duration-300 h-fit hover:-translate-y-1 flex justify-center lg:justify-end items-center transition-all ${darkMode ? "" : ""
@@ -141,7 +141,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                                 <img
                                     src="/hero.png"
                                     className={`w-[180px]  sm:w-[380px] md:w-[480px] ${darkMode ? "bg-[#03050e]" : "bg-gray-200 backdrop-blur-md"
-                                        } rounded-full transform scale-x-[-1] h-auto relative z-10`}
+                                        } rounded-full transform duration-500 scale-x-[-1] h-auto relative z-10`}
                                     style={{
                                         filter: darkMode
                                             ? ""
