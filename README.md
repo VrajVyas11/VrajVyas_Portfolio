@@ -42,7 +42,7 @@ I specialize in crafting responsive, user-friendly web applications with a focus
 
 Here are some Desktop screenshots of the portfolio website:
 
-<img src="./liveDemoImage/m1.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m2.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m3.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m4.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m5.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m6.png" width="150" style="margin-right: 10px;" />
+<img src="./liveDemoImage/m1.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m2.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m3.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m4.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m5.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m6.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m7.png" width="150" style="margin-right: 10px;" />
 
 
 Here are some Desktop screenshots of the portfolio website:
@@ -54,6 +54,10 @@ Here are some Desktop screenshots of the portfolio website:
 | ![Education](./liveDemoImage/4.png) | ![Work](./liveDemoImage/5.png) | ![Contact](./liveDemoImage/6.png) |
 |:----------------------------------:|:------------------------------:|:-------------------------------:|
 |         Education Section          |          Work Section           |         Contact Section          |
+
+| ![Contact](./liveDemoImage/7.png) |
+|:----------------------------------:|
+|         Education Section          |
 
 ---
 
