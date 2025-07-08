@@ -57,7 +57,7 @@ Here are some Desktop screenshots of the portfolio website:
 
 | ![Contact](./liveDemoImage/7.png) |
 |:----------------------------------:|
-|         Education Section          |
+|         Project Gallery Section          |
 
 ---
 
