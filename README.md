@@ -40,7 +40,12 @@ I specialize in crafting responsive, user-friendly web applications with a focus
 
 ## Screenshots
 
-Here are some screenshots of the portfolio website:
+Here are some Desktop screenshots of the portfolio website:
+
+<img src="./liveDemoImage/m1.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m2.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m3.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m4.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m5.png" width="150" style="margin-right: 10px;" /><img src="./liveDemoImage/m6.png" width="150" style="margin-right: 10px;" />
+
+
+Here are some Desktop screenshots of the portfolio website:
 
 | ![Home](./liveDemoImage/1.png) | ![About](./liveDemoImage/2.png) | ![Skills](./liveDemoImage/3.png) |
 |:------------------------------:|:------------------------------:|:------------------------------:|
