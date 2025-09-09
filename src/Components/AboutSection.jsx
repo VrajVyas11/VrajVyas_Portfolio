@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+import React from "react";
 import {
   MapPin,
   Calendar,
@@ -8,173 +8,103 @@ import {
   GitFork,
 } from "lucide-react";
 
+/**
+ * New look:
+ * - Strong solid color panels for the info grid,
+ * - Left side: bold intro with accent pill,
+ * - Right side: 2x3 grid of solid colored stat tiles with icons,
+ * - Preserves provided text and icons.
+ */
 function AboutSection({ darkMode = true }) {
+  const sectionBg = darkMode ? "bg-[#040617]" : "bg-white";
+  const headingColor = darkMode ? "text-white" : "text-black";
+  const subColor = darkMode ? "text-gray-300" : "text-gray-700";
+
+  const tileBg = (idx) =>
+    darkMode
+      ? ["bg-[#0b2233]", "bg-[#1b2a2f]", "bg-[#2b1a2f]", "bg-[#1a2238]", "bg-[#1f2b16]", "bg-[#28121a"][
+        idx % 6
+      ]
+      : ["bg-[#e6f6ff]", "bg-[#fff6e6]", "bg-[#fef2e8]", "bg-[#eefaf1]", "bg-[#fff0f6]", "bg-[#f0f7ff]"][
+        idx % 6
+      ];
+
+  const tiles = [
+    { icon: Calendar, label: "4 Months at Codewing" },
+    { icon: BookOpen, label: "MCA in Progress" },
+    { icon: Code, label: "MERN Stack Dev" },
+    { icon: GitFork, label: "Open Source" },
+    { icon: Smartphone, label: "Web & Mobile" },
+    { icon: MapPin, label: "Nadiad, Gujarat" },
+  ];
+
   return (
-    <section
-      className={`about py-12 sm:py-20 transition-all duration-500 ${
-        darkMode ? "bg-[#03050e]/90 text-gray-300" : "bg-white/50 text-gray-900"
-      }`}
-      id="about"
-    >
-      <h2 className="heading text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 text-center flex items-center justify-center gap-3 sm:gap-4 font-serif">
-        <img
-          src={`https://img.icons8.com/?size=64&id=6pczL8OSclRq&format=png&color=${
-            darkMode ? "ffffff" : "000000"
-          }`}
-          alt=""
-          className="w-10 h-10 sm:w-16 sm:h-16"
-        />{" "}
-        Meet{" "}
-        <span className={darkMode ? "text-gray-400" : "text-gray-700"}>
-          Vraj Vyas
-        </span>
-      </h2>
-
-      <div className="row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row-reverse gap-8 sm:gap-12">
-        <div className="content w-full md:w-3/5">
-          <h3
-            className={`text-2xl sm:text-3xl font-bold mb-2 ${
-              darkMode ? "text-gray-300" : "text-gray-900"
-            }`}
-          >
-            Hello, I'm Vraj!
-          </h3>
-          <span
-            className={`tag text-base sm:text-lg font-semibold ${
-              darkMode ? "text-gray-400" : "text-gray-700"
-            }`}
-          >
-            Full Stack Innovator | Code Craftsman
-          </span>
-
-          <p
-            className={`mt-3 sm:mt-4 leading-relaxed text-sm sm:text-base ${
-              darkMode ? "text-gray-400" : "text-gray-800"
-            }`}
-          >
-            I'm a 21-year-old{" "}
-            <span
-              className={`font-semibold ${
-                darkMode ? "text-gray-300" : "text-gray-900"
-              }`}
-            >
-              Full Stack Developer
-            </span>{" "}
-            from Nadiad, Gujarat, pursuing my MCA at Maharaja Sayajirao University.
-            <b>
-              "I thrive on weaving code into seamless, user-friendly applications
-              that spark joy and solve problems!"
-            </b>{" "}
-            With expertise in{" "}
-            <span
-              className={`font-semibold ${
-                darkMode ? "text-gray-300" : "text-gray-900"
-              }`}
-            >
-              React, Next.js, and Tailwind CSS
-            </span>{" "}
-            for stunning frontends and{" "}
-            <span
-              className={`font-semibold ${
-                darkMode ? "text-gray-300" : "text-gray-900"
-              }`}
-            >
-              Node.js
-            </span>{" "}
-            for robust backends, I've built projects like AI Manga Reader and Imaginify.
-            My 4-month internship at Codewing Technologies honed my skills, and I'm an
-            active{" "}
-            <span
-              className={`font-semibold ${
-                darkMode ? "text-gray-300" : "text-gray-900"
-              }`}
-            >
-              open-source contributor
-            </span>
-            . When not coding, I'm exploring new frameworks or dreaming up the next big
-            app.{" "}
-            <span
-              className={`font-semibold ${
-                darkMode ? "text-gray-300" : "text-gray-900"
-              }`}
-            >
-              Let's create something extraordinary!
-            </span>
-          </p>
-
-          <div className="box-container mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-4">
+    <section id="about" className={`py-12 sm:py-20 ${sectionBg} ${darkMode ? "text-gray-300" : "text-gray-900"
+      }`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="text-center mb-8">
+          <div className="inline-flex items-center gap-3">
             <div
-              className={`box text-sm sm:text-base ${
-                darkMode ? "text-gray-400" : "text-gray-500"
-              } w-full sm:w-auto`}
+              className={`w-12 h-12 rounded-full flex items-center justify-center ${darkMode ? "bg-amber-500 text-black" : "bg-amber-600 text-white"
+                }`}
             >
-              <p>
-                <span
-                  className={`font-semibold ${
-                    darkMode ? "text-gray-300" : "text-gray-900"
-                  }`}
-                >
-                  Email:
-                </span>{" "}
-                vyasvraj92@gmail.com
-              </p>
-              <p>
-                <span
-                  className={`font-semibold ${
-                    darkMode ? "text-gray-300" : "text-gray-900"
-                  }`}
-                >
-                  Phone:
-                </span>{" "}
-                +91 9104511100
-              </p>
-              <p>
-                <span
-                  className={`font-semibold ${
-                    darkMode ? "text-gray-300" : "text-gray-900"
-                  }`}
-                >
-                  Location:
-                </span>{" "}
-                Nadiad, Gujarat, India - 387001
-              </p>
+              <BookOpen size={20} />
+            </div>
+            <h2 className={`text-3xl sm:text-4xl font-bold ${headingColor}`}>
+              Meet <span className={subColor}>Vraj Vyas</span>
+            </h2>
+          </div>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+          <div className="md:col-span-3">
+            <h3 className={`text-2xl font-bold ${headingColor}`}>Hello, I'm Vraj!</h3>
+            <div className={`mt-2 inline-block px-3 py-1 rounded-full font-semibold ${darkMode ? "bg-gray-800 text-amber-300" : "bg-amber-50 text-amber-700"
+              }`}>
+              Full Stack Innovator
+            </div>
+
+            <p className={`mt-4 text-sm sm:text-base ${subColor} max-w-prose`}>
+              I'm a 21-year-old <span className="font-semibold">Full Stack Developer</span> from Nadiad,
+              pursuing my MCA at Maharaja Sayajirao University. I build responsive, accessible
+              applications using React, Next.js and Node.js. I love open-source and turning ideas
+              into polished products.
+            </p>
+
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className={`p-4 rounded-lg border ${darkMode ? "border-gray-700 bg-gray-900" : "border-gray-200 bg-white"} `}>
+                <p className="text-xs text-gray-400">Email</p>
+                <p className="font-medium mt-1">vyasvraj92@gmail.com</p>
+              </div>
+              <div className={`p-4 rounded-lg border ${darkMode ? "border-gray-700 bg-gray-900" : "border-gray-200 bg-white"} `}>
+                <p className="text-xs text-gray-400">Phone</p>
+                <p className="font-medium mt-1">+91 9104511100</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="w-full md:w-2/5 h-full">
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
-            {[
-              { icon: Calendar, label: "4 Months at Codewing" },
-              { icon: BookOpen, label: "MCA in Progress" },
-              { icon: Code, label: "MERN Stack Developer" },
-              { icon: GitFork, label: "Open Source Enthusiast" },
-              { icon: Smartphone, label: "Web & Mobile Dev" },
-              { icon: MapPin, label: "Nadiad, Gujarat" },
-            ].map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className={`w-full h-20 sm:h-28 rounded-lg p-3 flex items-center justify-center space-x-3 shadow-sm border transition-all duration-500 hover:shadow-md hover:-translate-y-1 ${
-                  darkMode
-                    ? "bg-gray-950 border-gray-700"
-                    : "bg-white shadow-lg border-gray-100"
-                }`}
-              >
-                <Icon
-                  className={`h-6 w-6 flex-shrink-0 ${
-                    darkMode ? "text-gray-400" : "text-gray-700"
-                  }`}
-                />
-                <span
-                  className={`text-sm font-medium ${
-                    darkMode ? "text-gray-300" : "text-gray-800"
-                  }`}
+          <aside className="md:col-span-2">
+            <div className="grid grid-cols-2 gap-3">
+              {tiles.map(({ icon: Icon, label }, i) => (
+                <div
+                  key={label}
+                  className={`flex flex-col items-start gap-2 p-3 rounded-lg border ${darkMode ? "border-gray-700" : "border-gray-200"
+                    } ${tileBg(i)} shadow-sm`}
                 >
-                  {label}
-                </span>
-              </div>
-            ))}
-          </div>
+                  <div
+                    className={`w-10 h-10 rounded-md flex items-center justify-center ${darkMode ? "bg-white/10" : "bg-white/80"
+                      }`}
+                    aria-hidden
+                  >
+                    <Icon className={`${darkMode ? "text-amber-300" : "text-amber-700"} w-4 h-4`} />
+                  </div>
+                  <div className={`${darkMode ? "text-gray-100" : "text-gray-900"} font-medium text-sm`}>
+                    {label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </aside>
         </div>
       </div>
     </section>

@@ -24,9 +24,9 @@ function Footer({darkMode,scrollToSection}) {
               <p className="text-gray-400 text-sm leading-relaxed">
                 Thanks for exploring my portfolio! I’m passionate about crafting modern, scalable web applications.
               </p>
-              <p className="text-gray-400 text-sm">
+              {/* <p className="text-gray-400 text-sm">
                 Let’s connect on social platforms to collaborate, innovate, and grow together.
-              </p>
+              </p> */}
               <p className="text-gray-200 font-semibold text-sm">
                 🚀 Keep Building. Keep Evolving.
               </p>

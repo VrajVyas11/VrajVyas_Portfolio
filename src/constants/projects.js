@@ -8,8 +8,8 @@ const projects = [
         "updated_at": "2025-07-03T17:05:22Z",
         "pushed_at": "2025-07-03T17:05:19Z",
         "language": "JavaScript",
-        "stargazers_count": 7,
-        "forks_count": 6,
+        "stargazers_count": 17,
+        "forks_count": 11,
         "tags": [
             "manga",
             "manga-reader",
@@ -28,7 +28,7 @@ const projects = [
             "tts",
             "webscraping"
         ],
-        "liveLink": "",
+        "liveLink": "https://ai-manga-reader.onrender.com/",
         "image": "/manga.png",
         "default_branch": "main"
     },
@@ -41,7 +41,7 @@ const projects = [
         "updated_at": "2025-05-20T12:10:31Z",
         "pushed_at": "2025-05-15T12:35:01Z",
         "language": "JavaScript",
-        "stargazers_count": 5,
+        "stargazers_count": 7,
         "forks_count": 2,
         "license": {
             "key": "mit",
@@ -120,6 +120,34 @@ const projects = [
         ],
         "liveLink": "https://www.npmjs.com/package/easyocr-js",
         "image": "/easyocr.webp,/easyocr2.jpg",
+        "default_branch": "main"
+    },
+    {
+        "title": "AI_Calories_Tracker",
+        "full_name": "VrajVyas11/AI_Calories_Tracker",
+        "githubLink": "https://github.com/VrajVyas11/AI_Calories_Tracker",
+        "description": "AI Calories Tracker lets you snap meals, auto-detect foods via Clarifai, fetch nutrition from USDA, and track calories/macros with a Supabase backend + local persistence. Supports serving adjustments, .env/CI secrets, and an intuitive, lightweight UI.",
+        "url": "https://api.github.com/repos/VrajVyas11/AI_Calories_Tracker",
+        "created_at": "2025-08-11T10:27:12Z",
+        "updated_at": "2025-09-07T10:09:52Z",
+        "pushed_at": "2025-09-07T10:09:49Z",
+        "language": "Dart",
+        "size": 249073,
+        "stargazers_count": 3,
+        "forks_count": 1,
+        "tags": [
+            "calories-tracker",
+            "clarifai",
+            "clarifai-api",
+            "dart",
+            "flutter",
+            "flutter-dotenv",
+            "food-recognition",
+            "image-recognition",
+            "nutrition",
+            "usda-national-nutrient-database"
+        ],
+        "image": "/aicaloriestracker1.png,/aicaloriestracker2.png",
         "default_branch": "main"
     },
     {
@@ -223,35 +251,35 @@ const projects = [
         "default_branch": "main"
     },
     {
-  "title": "Vaadin_Chat_App",
-  "full_name": "VrajVyas11/Vaadin_Chat_App",
-  "githubLink": "https://github.com/VrajVyas11/Vaadin_Chat_App",
-  "description": "Modern Vaadin chat app with group and personal chat, file sharing, and AI (Gemini) integration. Features secure JWT login, Supabase backend for real-time data, and a sleek design. Ideal for collaborative communication with AI assistance.",
-  "created_at": "2025-01-18T15:31:56Z",
-  "updated_at": "2025-07-08T15:55:55Z",
-  "pushed_at": "2025-04-26T04:43:38Z",
-  "language": "Java",
-  "stargazers_count": 1,
-  "forks_count": 3,
-  "license": {
-    "key": "unlicense",
-    "name": "The Unlicense",
-    "spdx_id": "Unlicense",
-    "url": "https://api.github.com/licenses/unlicense"
-  },
-  "liveLink": "https://vaadin-chat-app-i7z3.onrender.com",
-  "image": "/vaadin.png",
-  "tags": [
-    "chatapp",
-    "chatapplication",
-    "chatbot",
-    "file-sharing",
-    "java",
-    "spring-boot",
-    "vaadin"
-  ],
-  "default_branch": "main"
-},
+        "title": "Vaadin_Chat_App",
+        "full_name": "VrajVyas11/Vaadin_Chat_App",
+        "githubLink": "https://github.com/VrajVyas11/Vaadin_Chat_App",
+        "description": "Modern Vaadin chat app with group and personal chat, file sharing, and AI (Gemini) integration. Features secure JWT login, Supabase backend for real-time data, and a sleek design. Ideal for collaborative communication with AI assistance.",
+        "created_at": "2025-01-18T15:31:56Z",
+        "updated_at": "2025-07-08T15:55:55Z",
+        "pushed_at": "2025-04-26T04:43:38Z",
+        "language": "Java",
+        "stargazers_count": 1,
+        "forks_count": 3,
+        "license": {
+            "key": "unlicense",
+            "name": "The Unlicense",
+            "spdx_id": "Unlicense",
+            "url": "https://api.github.com/licenses/unlicense"
+        },
+        "liveLink": "https://vaadin-chat-app-i7z3.onrender.com",
+        "image": "/vaadin.png",
+        "tags": [
+            "chatapp",
+            "chatapplication",
+            "chatbot",
+            "file-sharing",
+            "java",
+            "spring-boot",
+            "vaadin"
+        ],
+        "default_branch": "main"
+    },
     {
         "title": "Prisma_Supabase_RestFul_Api",
         "full_name": "VrajVyas11/Prisma_Supabase_RestFul_Api",

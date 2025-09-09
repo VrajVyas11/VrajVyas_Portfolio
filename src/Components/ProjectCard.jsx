@@ -31,17 +31,17 @@ const ProjectCard = ({
             {/* Image or Placeholder */}
             <div className="relative w-full h-full">
                 {image ? (
-                    title === "easyocr-js" ? (
-                        <div className="flex flex-col h-full">
+                    title === "easyocr-js" || title=="AI_Calories_Tracker" ? (
+                        <div className="flex flex-row h-full">
                             <img
                                 src={image.split(",")[0]}
                                 alt={`${title} image 1`}
-                                className="w-full h-1/2 object-cover transition-all duration-500 group-hover:brightness-50 group-hover:scale-105"
+                                className="h-full w-1/2 object-cover transition-all duration-500 group-hover:brightness-50 group-hover:scale-105"
                             />
                             <img
                                 src={image.split(",")[1]}
                                 alt={`${title} image 2`}
-                                className="w-full h-1/2 object-cover transition-all duration-500 group-hover:brightness-50 group-hover:scale-105"
+                                className="h-full w-1/2 object-cover transition-all duration-500 group-hover:brightness-50 group-hover:scale-105"
                             />
                         </div>
                     ) : (
