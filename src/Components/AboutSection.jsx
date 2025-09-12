@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import {
   MapPin,
@@ -6,28 +7,14 @@ import {
   Smartphone,
   BookOpen,
   GitFork,
+  ShieldUser,
+  Projector,
 } from "lucide-react";
 
-/**
- * New look:
- * - Strong solid color panels for the info grid,
- * - Left side: bold intro with accent pill,
- * - Right side: 2x3 grid of solid colored stat tiles with icons,
- * - Preserves provided text and icons.
- */
 function AboutSection({ darkMode = true }) {
-  const sectionBg = darkMode ? "bg-[#040617]" : "bg-white";
   const headingColor = darkMode ? "text-white" : "text-black";
-  const subColor = darkMode ? "text-gray-300" : "text-gray-700";
-
-  const tileBg = (idx) =>
-    darkMode
-      ? ["bg-[#0b2233]", "bg-[#1b2a2f]", "bg-[#2b1a2f]", "bg-[#1a2238]", "bg-[#1f2b16]", "bg-[#28121a"][
-        idx % 6
-      ]
-      : ["bg-[#e6f6ff]", "bg-[#fff6e6]", "bg-[#fef2e8]", "bg-[#eefaf1]", "bg-[#fff0f6]", "bg-[#f0f7ff]"][
-        idx % 6
-      ];
+  const subColor = darkMode ? "text-gray-400" : "text-gray-600";
+  const cardBg = darkMode ? "bg-[#111827] border-gray-700" : "bg-white border-gray-200";
 
   const tiles = [
     { icon: Calendar, label: "4 Months at Codewing" },
@@ -39,68 +26,77 @@ function AboutSection({ darkMode = true }) {
   ];
 
   return (
-    <section id="about" className={`py-12 sm:py-20 ${sectionBg} ${darkMode ? "text-gray-300" : "text-gray-900"
-      }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="text-center mb-8">
-          <div className="inline-flex items-center gap-3">
-            <div
-              className={`w-12 h-12 rounded-full flex items-center justify-center ${darkMode ? "bg-amber-500 text-black" : "bg-amber-600 text-white"
-                }`}
-            >
-              <BookOpen size={20} />
-            </div>
-            <h2 className={`text-3xl sm:text-4xl font-bold ${headingColor}`}>
-              Meet <span className={subColor}>Vraj Vyas</span>
-            </h2>
-          </div>
+    <section id="about" className="py-16">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        {/* Header */}
+        <header className="mb-12 text-center">
+                        <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 flex flex-row justify-center items-center gap-3 sm:gap-4">
+                  <Projector className="w-10 h-10 sm:w-14 sm:h-14"/>
+                 Meet Vraj Vyas
+                </h2>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
-          <div className="md:col-span-3">
-            <h3 className={`text-2xl font-bold ${headingColor}`}>Hello, I'm Vraj!</h3>
-            <div className={`mt-2 inline-block px-3 py-1 rounded-full font-semibold ${darkMode ? "bg-gray-800 text-amber-300" : "bg-amber-50 text-amber-700"
-              }`}>
+        {/* Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+          {/* Left side */}
+          <div className="lg:col-span-3 space-y-5">
+            <h3 className={`text-2xl font-semibold ${headingColor}`}>
+              Hello, I'm Vraj!
+            </h3>
+            <span
+              className={`inline-block px-3 py-1 text-sm font-medium rounded-md ${
+                darkMode ? "bg-gray-800 text-amber-400" : "bg-amber-100 text-amber-700"
+              }`}
+            >
               Full Stack Innovator
-            </div>
+            </span>
 
-            <p className={`mt-4 text-sm sm:text-base ${subColor} max-w-prose`}>
-              I'm a 21-year-old <span className="font-semibold">Full Stack Developer</span> from Nadiad,
-              pursuing my MCA at Maharaja Sayajirao University. I build responsive, accessible
-              applications using React, Next.js and Node.js. I love open-source and turning ideas
-              into polished products.
+            <p className={`text-base leading-relaxed ${subColor}`}>
+              I'm a 21-year-old <span className="font-semibold">Full Stack Developer</span> 
+              from Nadiad, pursuing my MCA at Maharaja Sayajirao University.  
+              I specialize in building responsive, accessible applications 
+              using React, Next.js and Node.js. I’m passionate about open-source 
+              and transforming ideas into polished products.
             </p>
 
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className={`p-4 rounded-lg border ${darkMode ? "border-gray-700 bg-gray-900" : "border-gray-200 bg-white"} `}>
+            <div className="grid sm:grid-cols-2 gap-4 pt-4">
+              <div
+                className={`p-4 rounded-lg border ${cardBg}`}
+              >
                 <p className="text-xs text-gray-400">Email</p>
                 <p className="font-medium mt-1">vyasvraj92@gmail.com</p>
               </div>
-              <div className={`p-4 rounded-lg border ${darkMode ? "border-gray-700 bg-gray-900" : "border-gray-200 bg-white"} `}>
+              <div
+                className={`p-4 rounded-lg border ${cardBg}`}
+              >
                 <p className="text-xs text-gray-400">Phone</p>
                 <p className="font-medium mt-1">+91 9104511100</p>
               </div>
             </div>
           </div>
 
-          <aside className="md:col-span-2">
-            <div className="grid grid-cols-2 gap-3">
-              {tiles.map(({ icon: Icon, label }, i) => (
+          {/* Right side */}
+          <aside className="lg:col-span-2">
+            <div className="grid grid-cols-2 gap-4">
+              {tiles.map(({ icon: Icon, label }) => (
                 <div
                   key={label}
-                  className={`flex flex-col items-start gap-2 p-3 rounded-lg border ${darkMode ? "border-gray-700" : "border-gray-200"
-                    } ${tileBg(i)} shadow-sm`}
+                  className={`flex flex-col items-start p-4 rounded-lg border ${cardBg} shadow-sm`}
                 >
                   <div
-                    className={`w-10 h-10 rounded-md flex items-center justify-center ${darkMode ? "bg-white/10" : "bg-white/80"
-                      }`}
-                    aria-hidden
+                    className={`w-10 h-10 rounded-md flex items-center justify-center ${
+                      darkMode ? "bg-gray-700" : "bg-gray-100"
+                    }`}
                   >
-                    <Icon className={`${darkMode ? "text-amber-300" : "text-amber-700"} w-4 h-4`} />
+                    <Icon className="w-5 h-5 text-amber-500" />
                   </div>
-                  <div className={`${darkMode ? "text-gray-100" : "text-gray-900"} font-medium text-sm`}>
+                  <p
+                    className={`mt-3 text-sm font-medium ${
+                      darkMode ? "text-gray-100" : "text-gray-900"
+                    }`}
+                  >
                     {label}
-                  </div>
+                  </p>
                 </div>
               ))}
             </div>

@@ -54,11 +54,11 @@ const AnimatedHeroSection = ({ darkMode }) => {
                             >
                                 i'm{" "}
                                 <span
-                                    className={`${darkMode ? "text-[#22d3ee]" : "text-[#06b6d4]"}`}
+                                    className={`${darkMode ? "text-amber-400" : "text-[#06b6d4]"}`}
                                     style={darkMode ? {
                                         color: "transparent",
                                         WebkitTextStrokeWidth: "1.5px",
-                                        WebkitTextStrokeColor: "#22d3ee",
+                                        WebkitTextStrokeColor: "#fbbf24",
                                     } : {}}
                                 >
                                     Vraj Vyas
@@ -69,7 +69,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                             >
                                 I'm a{" "}
                                 <span
-                                    className={`inline-block transition-all duration-300 capitalize ${darkMode ? "text-[#22d3ee]" : "text-[#06b6d4]"}`}
+                                    className={`inline-block transition-all duration-300 capitalize ${darkMode ? "text-amber-400" : "text-[#06b6d4]"}`}
                                 >
                                     {displayedText}
                                     <span
@@ -147,7 +147,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
             </div>
             <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
                 <ChevronDown
-                    className={`${darkMode ? "text-[#60a5fa]" : "text-[#3b82f6]"} h-8 w-8`}
+                    className={`${darkMode ? "text-amber-400" : "text-[#3b82f6]"} h-8 w-8`}
                 />
             </div>
         </section>

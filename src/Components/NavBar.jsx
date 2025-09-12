@@ -12,19 +12,19 @@ const NavBar = ({
     setDarkMode,
 }) => (
     <nav
-        className={`fixed top-0 py-3 left-0 right-0 z-50 backdrop-blur-md border-b-2 shadow-xl transition-all duration-500 ${
+        className={`fixed top-0 w-[80%] justify-self-center rounded-full mt-5  scale-95 py-3 left-0 right-0 z-50 backdrop-blur-md border-b-2 shadow-xl transition-all duration-500 ${
             darkMode
-                ? "border-[#1e3a8a] shadow-[#1e3a8a]/30 bg-[#0a0f1e]/40 text-[#dbeafe]"
-                : "border-[#bfdbfe] shadow-[#bfdbfe]/30 bg-[#f0f4ff]/40 text-[#1e40af]"
+                ? "border-[#1e3a8a] shadow-[0px_5px_20px_rgba(0,0,0,1)] shadow-cyan-400/30 bg-[#0a0f1e]/10 text-[#dbeafe]"
+                : "border-[#bfdbfe] shadow-[0px_5px_20px_rgba(0,0,0,1)] shadow-cyan-400/30 bg-[#f0f4ff]/40 text-[#1e40af]"
         }`}
     >
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 ">
             <div className="flex items-center justify-between h-16">
-                <div className="text-2xl sm:text-3xl font-extrabold flex flex-row justify-center items-center gap-3 sm:gap-5 tracking-wide pacifico-regular">
+                <div className="text-2xl  font-extrabold flex flex-row justify-center items-center gap-3 sm:gap-5 tracking-wide pacifico-regular">
                     <img
                         src="logo.png"
                         alt="logo"
-                        className="rounded-full bg-white/90  backdrop-blur-lg w-auto h-12 sm:h-16 "
+                        className="rounded-full bg-white border-2 border-cyan-500 backdrop-blur-xl w-auto h-12 sm:h-14 "
                     />
                     Vraj Vyas
                 </div>
