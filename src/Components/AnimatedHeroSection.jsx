@@ -58,7 +58,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                                     style={darkMode ? {
                                         color: "transparent",
                                         WebkitTextStrokeWidth: "1.5px",
-                                        WebkitTextStrokeColor: "#fbbf24",
+                                        WebkitTextStrokeColor: "#06b6d4",
                                     } : {}}
                                 >
                                     Vraj Vyas
@@ -86,12 +86,12 @@ const AnimatedHeroSection = ({ darkMode }) => {
                         <div className="flex flex-row items-center gap-4 sm:gap-6">
                             <div>
                                 <Button
-                                    onClick={() => scrollToSection("work")}
+                                    onClick={() => window.open("/Resume/VrajVyasResume.pdf","_blank").focus()}
                                     icon={BookOpenText}
                                     containerClassName={`${darkMode ? "bg-[#1e3a8a] hover:bg-[#3b82f6]" : "bg-[#3b82f6] hover:bg-[#1e40af]"} text-white`}
                                     OuterContainerClassName="border-0 shadow-lg"
                                 >
-                                    Explore My Portfolio
+                                View My Resume
                                 </Button>
                             </div>
                             <div className="flex space-x-4 sm:space-x-6">
@@ -120,7 +120,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                         <div
                             className={`relative z-20 -mt-16 rounded-3xl transform w-full h-fit hover:-translate-y-2 flex justify-center lg:justify-end items-center transition-all duration-500`}
                         >
-                            <div className="relative  rounded-3xl shadow-2xl ">
+                            <div className="relative  rounded-3xl  ">
                                 <div className={`absolute inset-0 rounded-full ${darkMode ? "bg-[#22d3ee10]" : "bg-[#06b5d417]"} animate-ping`}></div>
                                 <img
                                     src="/hero.png"

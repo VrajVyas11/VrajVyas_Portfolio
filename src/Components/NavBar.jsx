@@ -14,8 +14,8 @@ const NavBar = ({
     <nav
         className={`fixed top-0 w-[80%] justify-self-center rounded-full mt-5  scale-95 py-3 left-0 right-0 z-50 backdrop-blur-md border-b-2 shadow-xl transition-all duration-500 ${
             darkMode
-                ? "border-[#1e3a8a] shadow-[0px_5px_20px_rgba(0,0,0,1)] shadow-cyan-400/30 bg-[#0a0f1e]/10 text-[#dbeafe]"
-                : "border-[#bfdbfe] shadow-[0px_5px_20px_rgba(0,0,0,1)] shadow-cyan-400/30 bg-[#f0f4ff]/40 text-[#1e40af]"
+                ? "border-[#1e3a8a] shadow-[0px_3px_20px_rgba(0,0,0,1)] shadow-cyan-400/30 bg-[#0a0f1e]/10 text-[#dbeafe]"
+                : "border-[#bfdbfe] shadow-[0px_3px_20px_rgba(0,0,0,1)] shadow-cyan-400/30 bg-[#f0f4ff]/40 text-[#1e40af]"
         }`}
     >
         <div className="max-w-7xl mx-auto px-6 sm:px-8 ">

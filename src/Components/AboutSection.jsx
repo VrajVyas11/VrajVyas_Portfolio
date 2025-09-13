@@ -30,10 +30,10 @@ function AboutSection({ darkMode = true }) {
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <header className="mb-12 text-center">
-                        <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 flex flex-row justify-center items-center gap-3 sm:gap-4">
-                  <Projector className="w-10 h-10 sm:w-14 sm:h-14"/>
-                 Meet Vraj Vyas
-                </h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 flex flex-row justify-center items-center gap-3 sm:gap-4">
+            <Projector className="w-10 h-10 sm:w-14 sm:h-14" />
+            Meet Vraj Vyas
+          </h2>
         </header>
 
         {/* Content */}
@@ -44,18 +44,17 @@ function AboutSection({ darkMode = true }) {
               Hello, I'm Vraj!
             </h3>
             <span
-              className={`inline-block px-3 py-1 text-sm font-medium rounded-md ${
-                darkMode ? "bg-gray-800 text-amber-400" : "bg-amber-100 text-amber-700"
-              }`}
+              className={`inline-block px-3 py-1 text-sm font-medium rounded-md ${darkMode ? "bg-gray-800 text-amber-400" : "bg-amber-100 text-amber-700"
+                }`}
             >
               Full Stack Innovator
             </span>
 
             <p className={`text-base leading-relaxed ${subColor}`}>
-              I'm a 21-year-old <span className="font-semibold">Full Stack Developer</span> 
-              from Nadiad, pursuing my MCA at Maharaja Sayajirao University.  
-              I specialize in building responsive, accessible applications 
-              using React, Next.js and Node.js. I’m passionate about open-source 
+              I'm a 21-year-old <span className="font-semibold">Full Stack Developer</span>
+              from Nadiad, pursuing my MCA at Maharaja Sayajirao University.
+              I specialize in building responsive, accessible applications
+              using React, Next.js and Node.js. I’m passionate about open-source
               and transforming ideas into polished products.
             </p>
 
@@ -84,16 +83,14 @@ function AboutSection({ darkMode = true }) {
                   className={`flex flex-col items-start p-4 rounded-lg border ${cardBg} shadow-sm`}
                 >
                   <div
-                    className={`w-10 h-10 rounded-md flex items-center justify-center ${
-                      darkMode ? "bg-gray-700" : "bg-gray-100"
-                    }`}
+                    className={`w-10 h-10 rounded-md flex items-center justify-center ${darkMode ? "bg-gray-700" : "bg-gray-100"
+                      }`}
                   >
                     <Icon className="w-5 h-5 text-amber-500" />
                   </div>
                   <p
-                    className={`mt-3 text-sm font-medium ${
-                      darkMode ? "text-gray-100" : "text-gray-900"
-                    }`}
+                    className={`mt-3 text-sm font-medium ${darkMode ? "text-gray-100" : "text-gray-900"
+                      }`}
                   >
                     {label}
                   </p>

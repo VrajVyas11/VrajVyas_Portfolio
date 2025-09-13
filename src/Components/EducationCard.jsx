@@ -16,7 +16,7 @@ const EducationCard = ({
   details,
   darkMode = true,
 }) => {
-  const [ref, inView] = useInView({threshold:0.5});
+  const [ref, inView] = useInView({threshold:0.3});
 
   const cardBg = darkMode ? "bg-[#040917]" : "bg-white";
   const cardBorder = darkMode ? "border-gray-700" : "border-gray-200";
