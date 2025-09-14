@@ -1,45 +1,69 @@
-import React, { useState } from "react";
-import {
-  Github,
-  ExternalLink,
-  ChevronLeft,
-  ChevronRight,
-  X,
-} from "lucide-react";
-import projects from "../constants/projects";
-import useInView from "../hooks/useInView";
+// src/components/ProjectGallery.jsx
+import React, { useState, useEffect, useCallback } from "react";
+import { Github, ExternalLink, X, ChevronLeft, ChevronRight, Star, GitFork, CalendarDays } from "lucide-react";
+import useGithubProjects from "../hooks/useGithubProjects";
+import ProjectCard from "../Components/ProjectCard";
 
 const ProjectGallery = ({ darkMode = true }) => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { projects, loading, error } = useGithubProjects();
+  const [selected, setSelected] = useState(null);
+  const [imageIndex, setImageIndex] = useState(0);
+  const nextImage = useCallback(() => {
+    if (!selected) return;
+    const imgs = (selected.image || "/default_project.png").split(",");
+    setImageIndex((i) => (i + 1) % imgs.length);
+  }, [selected]);
+
+  const prevImage = useCallback(() => {
+    if (!selected) return;
+    const imgs = (selected.image || "/default_project.png").split(",");
+    setImageIndex((i) => (i - 1 + imgs.length) % imgs.length);
+  }, [selected]);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (!selected) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "ArrowRight") nextImage();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [nextImage, prevImage, selected]);
 
   const openModal = (project) => {
-    setSelectedProject(project);
-    setCurrentImageIndex(0);
+    setSelected(project);
+    setImageIndex(0);
     document.body.style.overflow = "hidden";
   };
-
   const closeModal = () => {
-    setSelectedProject(null);
+    setSelected(null);
     document.body.style.overflow = "unset";
   };
 
-  const nextImage = () => {
-    if (!selectedProject) return;
-    const images = selectedProject.image.split(",");
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  };
+  if (loading) {
+    return (
+      <section className={`min-h-screen  flex items-center justify-center ${darkMode ? "bg-black text-gray-300" : "bg-gray-100 text-gray-900"}`}>
+        <p>Loading projects...</p>
+      </section>
+    );
+  }
 
-  const prevImage = () => {
-    if (!selectedProject) return;
-    const images = selectedProject.image.split(",");
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
+  if (error) {
+    return (
+      <section className={`min-h-screen flex items-center justify-center ${darkMode ? "bg-black text-red-400" : "bg-gray-100 text-red-600"}`}>
+        <div className="text-center">
+          <h3 className="text-xl font-bold">Failed to load projects</h3>
+          <p className="mt-2">{error.message}</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section
+   <section
       id="projects"
-      className={`min-h-screen py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-500 ${
+      className={`min-h-screen py-20 px-4 sm:px-6 lg:px-8 pt-32 transition-colors duration-500 ${
         darkMode ? "bg-[#03050e] text-gray-300" : "bg-gray-100 text-gray-900"
       }`}
     >
@@ -53,7 +77,7 @@ const ProjectGallery = ({ darkMode = true }) => {
           }`}
         >
           <img
-            className="mt-2 w-10 h-10 sm:w-20 sm:h-20"
+            className="mt-2 transform transition-all duration-0 w-10 h-10 sm:w-20 sm:h-20"
             src={`https://img.icons8.com/?size=100&id=FVDBGC3QPi3J&format=png&color=${
               darkMode ? "ffffff" : "000000"
             }`}
@@ -70,242 +94,154 @@ const ProjectGallery = ({ darkMode = true }) => {
           crafted.
         </p>
       </div>
-
-      {/* Projects Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.length === 0 ? (
-          <p className="col-span-full text-center text-lg text-gray-500">
-            No projects found. Try adjusting your filters or search.
-          </p>
-        ) : (
-          projects.map((project) => {            
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            const [ref, inView] = useInView();
-            const images = project.image.split(",");
-
-            return (
-              <div
-                ref={ref}
-                key={project.title}
-                tabIndex={0}
-                role="button"
-                onClick={() => openModal(project)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") openModal(project);
-                }}
-                className={`relative rounded-xl overflow-hidden shadow-lg cursor-pointer transform transition duration-700 hover:scale-[1.03] hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-gray-500 ${
-                  darkMode
-                    ? "bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700"
-                    : "bg-white border border-gray-300"
-                } ${
-                  inView
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
-                }`}
-              >
-                {/* Project Image */}
-                <img
-                  src={
-                    images[0] ||
-                    `https://img.icons8.com/?size=1300&id=PLJWnvM1vQLJ&format=png&color=${
-                      darkMode ? "ffffff" : "000000"
-                    }`
-                  }
-                  alt={`${project.title} screenshot`}
-                  className="w-full h-56 object-cover rounded-t-xl"
-                  loading="lazy"
-                />
-
-                {/* Overlay with details on hover */}
-                <div
-                  className={`absolute inset-0 bg-black bg-opacity-80 opacity-0 hover:opacity-100 focus-within:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6 rounded-b-xl`}
-                >
-                  <div>
-                    {project.featured && (
-                      <span className="inline-block mb-3 px-3 py-1 text-xs font-semibold bg-white text-black rounded-full select-none">
-                        Featured
-                      </span>
-                    )}
-                    <h3 className="text-2xl font-bold mb-2 text-white">
-                      {project.title}
-                    </h3>
-                    <p
-                      className="text-sm mb-4 line-clamp-4 text-gray-300"
-                      style={{ fontFamily: "'Merriweather', serif" }}
-                    >
-                      {project.description}
-                    </p>
-                  </div>
-
-                  {/* Buttons */}
-                  <div className="flex gap-4 mt-0">
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="flex items-center gap-2 px-5 py-2 border rounded-md font-semibold transition-colors duration-300 border-white text-white hover:bg-white hover:text-black"
-                      aria-label={`View ${project.title} on GitHub`}
-                    >
-                      <Github className="w-5 h-5" />
-                      Code
-                    </a>
-                    {project.liveLink && (
-                      <a
-                        href={project.liveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-2 px-5 py-2 border rounded-md font-semibold transition-colors duration-300 border-white text-white hover:bg-white hover:text-black"
-                        aria-label={`View live demo of ${project.title}`}
-                      >
-                        <ExternalLink className="w-5 h-5" />
-                        Live
-                      </a>
-                    )}
-                  </div>
-                </div>
+        <div className="grid max-w-7xl justify-self-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.slice(0,21).map((p, idx) => (
+            <div key={p.full_name || `${p.title}-${idx}`} className="relative">
+              <div className="absolute right-3 top-3 z-10 bg-black/50 text-yellow-300 px-2 py-1 rounded-full text-xs border border-yellow-400/30">
+                #{idx + 1}
               </div>
-            );
-          })
-        )}
-      </div>
-
-      {/* Modal */}
-      {selectedProject && (
-        <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-title"
-          aria-describedby="modal-description"
-          onClick={closeModal}
-        >
-          <div
-            className="max-w-4xl w-full max-h-[90vh] rounded-xl overflow-hidden shadow-2xl bg-gray-900 text-gray-100 relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-700">
-              <h2 id="modal-title" className="text-3xl font-extrabold">
-                {selectedProject.title}
-              </h2>
-              <button
-                onClick={closeModal}
-                className="p-2 hover:bg-gray-700 rounded-full transition-colors"
-                aria-label="Close modal"
-              >
-                <X className="w-6 h-6" />
-              </button>
+              <ProjectCard
+                projectData={p}
+                onViewDetails={openModal}
+                darkMode={darkMode}
+              />
             </div>
+          ))}
+        </div>
 
-            {/* Content */}
-            <div className="p-6 overflow-y-auto max-h-[70vh]">
-              {/* Image Carousel */}
-              <div className="relative mb-6">
-                {selectedProject.image.includes(",") ? (
-                  <>
-                    <img
-                      src={selectedProject.image.split(",")[currentImageIndex]}
-                      alt={`${selectedProject.title} screenshot ${
-                        currentImageIndex + 1
-                      }`}
-                      className="w-full h-64 object-cover rounded-lg"
-                      loading="lazy"
-                    />
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
-                      aria-label="Previous image"
-                    >
-                      <ChevronLeft className="w-6 h-6 text-white" />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
-                      aria-label="Next image"
-                    >
-                      <ChevronRight className="w-6 h-6 text-white" />
-                    </button>
-                  </>
-                ) : (
-                  <img
-                    src={selectedProject.image}
-                    alt={`${selectedProject.title} screenshot`}
-                    className="w-full h-64 object-cover rounded-lg"
-                    loading="lazy"
-                  />
-                )}
-              </div>
-
-              {/* Description */}
-              <p className="text-lg leading-relaxed mb-6">
-                {selectedProject.description}
-              </p>
-
-              {/* Tags */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold mb-3">Technologies Used</h3>
-                <div className="flex flex-wrap gap-3">
-                  {selectedProject.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="bg-blue-900/50 text-blue-300 px-4 py-1 rounded-full text-sm font-semibold"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+        {/* Modal */}
+        {selected && (
+          <div
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+            role="dialog"
+            aria-modal="true"
+            onClick={closeModal}
+          >
+            <div
+              className="max-w-4xl w-full bg-gray-900 text-gray-100 rounded-lg overflow-hidden shadow-2xl border border-blue-800"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-800 bg-gradient-to-r from-blue-900/30 to-black/30">
+                <div>
+                  <h3 className="text-2xl font-extrabold">{selected.title}</h3>
+                  <p className="text-sm text-gray-300 mt-1">{selected.full_name}</p>
+                </div>
+                <div className="flex items-center gap-3">
+                  {selected.githubLink && (
+                    <a href={selected.githubLink} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="px-3 py-1 bg-blue-800 text-white rounded-md flex items-center gap-2">
+                      <Github className="w-4 h-4" />
+                      Repo
+                    </a>
+                  )}
+                  {selected.liveLink && (
+                    <a href={selected.liveLink} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="px-3 py-1 bg-yellow-400 text-black rounded-md flex items-center gap-2">
+                      <ExternalLink className="w-4 h-4" />
+                      Live
+                    </a>
+                  )}
+                  <button onClick={closeModal} className="p-2 rounded-md hover:bg-blue-800/30" aria-label="Close">
+                    <X />
+                  </button>
                 </div>
               </div>
 
-              {/* Links */}
-              <div className="flex gap-6">
-                <a
-                  href={selectedProject.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
-                >
-                  <Github className="w-5 h-5" />
-                  View Code
-                </a>
-                {selectedProject.liveLink && (
-                  <a
-                    href={selectedProject.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-6 py-3 bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors"
-                  >
-                    <ExternalLink className="w-5 h-5" />
-                    Live Demo
-                  </a>
-                )}
+              {/* Body */}
+              <div className="p-4 max-h-[70vh] overflow-y-auto">
+                {/* Carousel */}
+                <div className="relative mb-4">
+                  {((selected.image || "/default_project.png").split(",") || []).length > 1 ? (
+                    <>
+                      <img
+                        src={(selected.image || "/default_project.png").split(",")[imageIndex]}
+                        alt={`${selected.title} screenshot ${imageIndex + 1}`}
+                        className="w-full h-64 object-cover rounded-md"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "/default_project.png";
+                        }}
+                      />
+                      <button onClick={(e) => { e.stopPropagation(); prevImage(); }} className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 text-white">
+                        <ChevronLeft />
+                      </button>
+                      <button onClick={(e) => { e.stopPropagation(); nextImage(); }} className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 text-white">
+                        <ChevronRight />
+                      </button>
+                      <div className="absolute left-1/2 -translate-x-1/2 bottom-2 flex gap-2">
+                        {(selected.image || "/default_project.png").split(",").map((_, i) => (
+                          <button key={i} onClick={(e) => { e.stopPropagation(); setImageIndex(i); }} className={`w-2 h-2 rounded-full ${i === imageIndex ? "bg-yellow-300" : "bg-gray-400/40"}`} aria-label={`Go to image ${i + 1}`} />
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <img src={selected.image || "/default_project.png"} alt={selected.title} className="w-full h-64 object-cover rounded-md" />
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="md:col-span-2">
+                    <p className="text-gray-200 mb-4">{selected.description || "No description available."}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {(selected.tags || []).map((t, i) => (
+                        <span key={i} className="px-3 py-1 rounded-full bg-blue-800 text-blue-100 text-sm">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-4 flex-wrap">
+                      <div className="flex items-center gap-2 bg-blue-900/20 px-3 py-2 rounded-md">
+                        <Star className="w-4 h-4 text-yellow-300" />
+                        <div>
+                          <div className="text-sm text-gray-300">Stars</div>
+                          <div className="font-semibold">{selected.stargazers_count ?? 0}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 bg-blue-900/20 px-3 py-2 rounded-md">
+                        <GitFork className="w-4 h-4 text-yellow-300" />
+                        <div>
+                          <div className="text-sm text-gray-300">Forks</div>
+                          <div className="font-semibold">{selected.forks_count ?? 0}</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 bg-blue-900/20 px-3 py-2 rounded-md">
+                        <CalendarDays className="w-4 h-4 text-yellow-300" />
+                        <div>
+                          <div className="text-sm text-gray-300">Updated</div>
+                          <div className="font-semibold">{selected.updated_at ? new Date(selected.updated_at).toLocaleDateString() : "N/A"}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <aside className="bg-gray-900/60 p-3 rounded-md border border-blue-800">
+                    <div className="text-sm text-gray-300 mb-2 font-semibold">Details</div>
+                    <div className="text-sm text-gray-200">
+                      <div><strong>Repo:</strong> {selected.full_name}</div>
+                      <div><strong>Language:</strong> {selected.language || "N/A"}</div>
+                      <div><strong>Branch:</strong> {selected.default_branch || "main"}</div>
+                      <div className="mt-3">
+                        {selected.githubLink && (
+                          <a href={selected.githubLink} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-1 bg-blue-800 text-white rounded-md">
+                            <Github className="w-4 h-4" /> View on GitHub
+                          </a>
+                        )}
+                      </div>
+                      {selected.liveLink && (
+                        <div className="mt-2">
+                          <a href={selected.liveLink} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-400 text-black rounded-md">
+                            <ExternalLink className="w-4 h-4" /> Open Live
+                          </a>
+                        </div>
+                      )}
+                    </div>
+                  </aside>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </section>
 
-      {/* Animations */}
-      <style jsx>{`
-        @keyframes fadeSlideUp {
-          0% {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .line-clamp-4 {
-          display: -webkit-box;
-          -webkit-line-clamp: 4;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
-    </section>
   );
 };
 
