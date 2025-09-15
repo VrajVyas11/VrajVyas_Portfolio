@@ -23,6 +23,7 @@ I specialize in crafting responsive, user-friendly web applications with a focus
 - Contact form with validation and social links
 - Education timeline with clean, modern UI
 - Smooth scrolling navigation and section highlighting
+- Dynamic Project data fetching via api.github to display latest data about projects
 
 ---
 
