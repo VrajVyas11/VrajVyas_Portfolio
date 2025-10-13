@@ -1,27 +1,43 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import {
-    ChevronDown,
     Github,
     Linkedin,
-    Code,
-    BookOpenText,
+    Mail,
+    ArrowRight,
+    Sparkles,
+    Code2,
+    Terminal,
+    Braces,
 } from "lucide-react";
-import Button from "./Button";
+
+const Button = ({ onClick, icon: Icon, children, className = "" }) => (
+    <button
+        onClick={onClick}
+        className={`group relative px-8 py-4 rounded-2xl font-semibold text-base tracking-wide transition-all duration-300 hover:scale-105 flex items-center gap-3 ${className}`}
+    >
+        {Icon && <Icon className="w-5 h-5" />}
+        {children}
+        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+    </button>
+);
+
+
 const AnimatedHeroSection = ({ darkMode }) => {
     const [currentRole, setCurrentRole] = useState(0);
     const [displayedText, setDisplayedText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
 
     useEffect(() => {
-        const roles = ["Tech Enthusiast", "DevOps Engineer", "Frontend Dev", "Backend Dev", "Mobile Dev"];
+        const roles = ["Full Stack Developer", "DevOps Engineer", "UI/UX Enthusiast", "Problem Solver"];
 
         const currentRoleText = roles[currentRole];
 
         const timeout = setTimeout(() => {
             if (!isDeleting && displayedText === currentRoleText) {
-                setTimeout(() => setIsDeleting(true), 1500);
+                setTimeout(() => setIsDeleting(true), 2000);
             } else if (isDeleting && displayedText === "") {
                 setIsDeleting(false);
                 setCurrentRole((prev) => (prev + 1) % roles.length);
@@ -30,126 +46,262 @@ const AnimatedHeroSection = ({ darkMode }) => {
             } else {
                 setDisplayedText(currentRoleText.substring(0, displayedText.length + 1));
             }
-        }, isDeleting ? 60 : 120);
+        }, isDeleting ? 50 : 100);
 
         return () => clearTimeout(timeout);
     }, [displayedText, isDeleting, currentRole]);
 
-    const scrollToSection = (sectionId) => {
-        console.log(`Scrolling to ${sectionId}`);
-    };
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            setMousePosition({ x: e.clientX, y: e.clientY });
+        };
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, []);
+
+    const floatingIcons = [
+        { Icon: Code2, delay: 0, duration: 20 },
+        { Icon: Terminal, delay: 5, duration: 25 },
+        { Icon: Braces, delay: 10, duration: 22 },
+        { Icon: Sparkles, delay: 15, duration: 18 },
+    ];
 
     return (
         <section
-            id="home"
-            className={`min-h-screen overflow-hidden flex items-center transition-all duration-500 ${darkMode ? "bg-transparent text-[#bfdbfe]" : "bg-[#eff6ff]/50 text-[#1e40af]"
+            className={`min-h-screen relative pt-10 flex items-center transition-all duration-700 overflow-hidden ${darkMode ? "bg-[#0a0f1e00]" : "bg-white"
                 }`}
         >
-            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-24 sm:pt-32 pb-10 w-full">
-                <div className="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-10 sm:gap-16 items-center">
-                    <div className="space-y-8 relative z-40 sm:space-y-10 col-span-12 lg:col-span-7 order-2 lg:order-1 mt-10 lg:mt-0">
-                        <div className="space-y-6 sm:space-y-8">
-                            <div
-                                className={`text-sm sm:text-lg w-full font-extrabold leading-tight tracking-[0.4em] uppercase ${darkMode ? "text-[#dbeafe]" : "text-[#1e40af]"}`}
+            {/* Animated Grid Background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div
+                    className={`absolute inset-0 ${darkMode ? "opacity-20" : "opacity-10"
+                        }`}
+                    style={{
+                        backgroundImage: `linear-gradient(${darkMode ? "#1e3a8a" : "#3b82f6"} 1px, transparent 1px), linear-gradient(90deg, ${darkMode ? "#1e3a8a" : "#3b82f6"} 1px, transparent 1px)`,
+                        backgroundSize: "50px 50px",
+                        transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
+                        transition: "transform 0.3s ease-out",
+                    }}
+                />
+
+                {/* Floating Icons */}
+                {floatingIcons.map(({ Icon, delay, duration }, index) => (
+                    <div
+                        key={index}
+                        className={`absolute ${darkMode ? "text-cyan-500/20" : "text-blue-500/20"}`}
+                        style={{
+                            left: `${15 + index * 20}%`,
+                            top: `${20 + index * 15}%`,
+                            animation: `float ${duration}s ease-in-out infinite`,
+                            animationDelay: `${delay}s`,
+                        }}
+                    >
+                        <Icon className="w-12 h-12" />
+                    </div>
+                ))}
+            </div>
+
+            {/* Main Content */}
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 relative z-10 w-full">
+                <div className="grid lg:grid-cols-3 gap-16 items-center">
+                    {/* Left Content */}
+                    <div className="space-y-8 lg:col-span-2">
+                        {/* Greeting Badge */}
+                        <div
+                            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm ${darkMode
+                                    ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+                                    : "bg-blue-500/10 border-blue-500/30 text-blue-600"
+                                }`}
+                        >
+                            <Sparkles className="w-4 h-4 animate-pulse" />
+                            <span className="text-sm font-semibold tracking-wide">
+                                Available for Opportunities
+                            </span>
+                        </div>
+
+                        {/* Name */}
+                        <div className="space-y-4">
+                            <h1
+                                className={`text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-none ${darkMode ? "text-white" : "text-gray-900"
+                                    }`}
                             >
-                                i'm{" "}
+                                Vraj&nbsp;
                                 <span
-                                    className={`${darkMode ? "text-amber-400" : "text-[#06b6d4]"}`}
-                                    style={darkMode ? {
-                                        color: "transparent",
-                                        WebkitTextStrokeWidth: "1.5px",
-                                        WebkitTextStrokeColor: "#06b6d4",
-                                    } : {}}
+                                    className={`${darkMode ? "text-cyan-400" : "text-blue-600"
+                                        }`}
                                 >
-                                    Vraj Vyas
+                                    Vyas
                                 </span>
-                            </div>
-                            <div
-                                className={`mb-4 sm:mb-8 w-full text-4xl sm:text-5xl md:text-6xl font-black tracking-tight ${darkMode ? "text-[#dbeafe]" : "text-[#1e40af]"}`}
-                            >
-                                I'm a{" "}
+                            </h1>
+
+                            {/* Animated Role */}
+                            <div className="flex items-center gap-3 text-2xl lg:text-3xl font-bold">
+                                <span>I am</span>
                                 <span
-                                    className={`inline-block transition-all duration-300 capitalize ${darkMode ? "text-amber-400" : "text-[#06b6d4]"}`}
+                                    className={darkMode ? "text-gray-400" : "text-gray-600"}
                                 >
                                     {displayedText}
-                                    <span
-                                        className={`inline-block w-1 h-14 sm:h-20 md:h-16 ml-1 ${darkMode ? "bg-[#22d3ee]" : "bg-[#06b6d4]"} animate-pulse`}
-                                    />
                                 </span>
-                            </div>
-                            <p
-                                className={`w-full mb-10 sm:mb-16 leading-relaxed text-base sm:text-xl md:text-2xl transition-all duration-500 ${darkMode ? "text-[#93c5fd] opacity-85" : "text-[#1d4ed8] opacity-85"}`}
-                            >
-                                A 21-year-old full stack developer passionate about creating responsive, intuitive web apps, excelling in frontend innovation.
-                            </p>
-                        </div>
-                        <div className="flex flex-row items-center gap-4 sm:gap-6">
-                            <div>
-                                <Button
-                                    onClick={() => window.open("/Resume/VrajVyasResume.pdf","_blank").focus()}
-                                    icon={BookOpenText}
-                                    containerClassName={`${darkMode ? "bg-[#1e3a8a] hover:bg-[#3b82f6]" : "bg-[#3b82f6] hover:bg-[#1e40af]"} text-white`}
-                                    OuterContainerClassName="border-0 shadow-lg"
-                                >
-                                View My Resume
-                                </Button>
-                            </div>
-                            <div className="flex space-x-4 sm:space-x-6">
-                                <a
-                                    href="https://github.com/VrajVyas11"
-                                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shadow-md border-2 transition-all duration-300 hover:scale-110 ${darkMode
-                                            ? "bg-[#0a0f1e] border-[#1e3a8a] hover:border-[#3b82f6] text-[#bfdbfe]"
-                                            : "bg-[#f0f4ff] border-[#bfdbfe] hover:border-[#1e40af] text-[#1e40af]"
-                                        }`}
-                                >
-                                    <Github className="h-6 w-6" />
-                                </a>
-                                <a
-                                    href="https://www.linkedin.com/in/vraj-vyas"
-                                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center shadow-md border-2 transition-all duration-300 hover:scale-110 ${darkMode
-                                            ? "bg-[#0a0f1e] border-[#1e3a8a] hover:border-[#3b82f6] text-[#bfdbfe]"
-                                            : "bg-[#f0f4ff] border-[#bfdbfe] hover:border-[#1e40af] text-[#1e40af]"
-                                        }`}
-                                >
-                                    <Linkedin className="h-6 w-6" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="absolute z-20 top-[40%] left-1/2 opacity-70 md:top-auto md:left-auto md:opacity-100 md:relative col-span-12 lg:col-span-5 order-1 lg:order-2">
-                        <div
-                            className={`relative z-20 -mt-16 rounded-3xl transform w-full h-fit hover:-translate-y-2 flex justify-center lg:justify-end items-center transition-all duration-500`}
-                        >
-                            <div className="relative  rounded-3xl  ">
-                                <div className={`absolute inset-0 rounded-full ${darkMode ? "bg-[#22d3ee10]" : "bg-[#06b5d417]"} animate-ping`}></div>
-                                <img
-                                    src="/hero.png"
-                                    className={`w-[220px] sm:w-[420px] md:w-[520px] rounded-full transform duration-500 scale-x-[-1] h-auto relative z-10 ${darkMode ? "bg-[#0a0f1e]" : "bg-[#f0f4ff]"
-                                        }`}
-                                    style={{
-                                        filter: darkMode ? "drop-shadow(0 0 15px rgba(59, 130, 246, 0.3))" : "drop-shadow(0 0 15px rgba(30, 64, 175, 0.3))",
-                                    }}
-                                    alt="Hero"
+                                <span
+                                    className={`inline-block w-1 h-8 ${darkMode ? "bg-cyan-400" : "bg-blue-600"
+                                        } animate-pulse`}
                                 />
                             </div>
                         </div>
 
-                        <div
-                            className={`absolute z-10 h-14 w-14 sm:h-18 sm:w-18 -bottom-8 sm:-bottom-12 duration-1000 -right-2 sm:-right-2 rounded-full animate-pulse flex justify-center items-center shadow-lg ${darkMode ? "bg-[#1e3a8a]/60" : "bg-[#3b82f6]/40"
+                        {/* Description */}
+                        <p
+                            className={`text-lg lg:text-xl leading-relaxed max-w-xl ${darkMode ? "text-gray-400" : "text-gray-600"
                                 }`}
                         >
-                            <Code
-                                className={`h-7 w-7 ${darkMode ? "text-[#dbeafe]" : "text-[#eff6ff]"}`}
+                            Crafting seamless digital experiences with modern web technologies.
+                            Specialized in building scalable applications that merge elegant
+                            design with powerful functionality.
+                        </p>
+
+                        {/* CTA Buttons */}
+                        <div className="flex flex-wrap items-center gap-4 pt-4">
+                            <Button
+                                onClick={() =>
+                                    window.open("/Resume/VrajVyasResume.pdf", "_blank")
+                                }
+                                className={`${darkMode
+                                        ? "bg-cyan-500 hover:bg-cyan-400 text-gray-900"
+                                        : "bg-blue-600 hover:bg-blue-700 text-white"
+                                    } shadow-lg`}
+                            >
+                                View Resume
+                            </Button>
+
+                            <a
+                                href="#contact"
+                                className={`group px-8 py-4 rounded-2xl font-semibold text-base tracking-wide transition-all duration-300 hover:scale-105 flex items-center gap-3 border-2 ${darkMode
+                                        ? "border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10"
+                                        : "border-blue-600/50 text-blue-600 hover:bg-blue-600/10"
+                                    }`}
+                            >
+                                <Mail className="w-5 h-5" />
+                                Get in Touch
+                            </a>
+
+                            {/* Social Links */}
+                            <div className="flex items-center gap-4">
+                                <a
+                                    href="https://github.com/VrajVyas11"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`group relative p-4 rounded-xl border-2 transition-all duration-300 hover:scale-110 ${darkMode
+                                            ? "bg-gray-900 border-gray-800 hover:border-cyan-500 text-gray-400 hover:text-cyan-400"
+                                            : "bg-gray-50 border-gray-200 hover:border-blue-600 text-gray-600 hover:text-blue-600"
+                                        }`}
+                                >
+                                    <Github className="w-6 h-6" />
+                                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded bg-gray-900 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        GitHub
+                                    </span>
+                                </a>
+
+                                <a
+                                    href="https://www.linkedin.com/in/vraj-vyas"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`group relative p-4 rounded-xl border-2 transition-all duration-300 hover:scale-110 ${darkMode
+                                            ? "bg-gray-900 border-gray-800 hover:border-cyan-500 text-gray-400 hover:text-cyan-400"
+                                            : "bg-gray-50 border-gray-200 hover:border-blue-600 text-gray-600 hover:text-blue-600"
+                                        }`}
+                                >
+                                    <Linkedin className="w-6 h-6" />
+                                    <span className="absolute -top-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded bg-gray-900 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        LinkedIn
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {/* Right Content - Abstract Illustration */}
+                    <div className="relative mt-10 lg:block hidden">
+                        <div className="relative w-full aspect-square max-w-7xl mx-auto">
+                            {/* Hero Image */}
+                            <img
+                                src="/hero.png"
+                                className={`w-[280px] p-4 sm:w-[500px] md:w-[680px] lg:w-[750px] rounded-full transform duration-500 scale-x-[-1] h-auto relative z-10`}
+                                style={{
+                                    filter: darkMode ? "drop-shadow(0 0 20px rgba(59, 130, 246, 0.4))" : "drop-shadow(0 0 20px rgba(30, 64, 175, 0.4))",
+                                }}
+                                alt="Hero"
                             />
+
+                            {/* Rotating Rings */}
+                            <div
+                                className={`absolute inset-0 rounded-full border-2 ${darkMode ? "border-cyan-500/30" : "border-blue-500/30"
+                                    }`}
+                                style={{
+                                    animation: "spin 30s linear infinite",
+                                }}
+                            />
+                            <div
+                                className={`absolute inset-8 rounded-full border-2 border-dashed ${darkMode ? "border-cyan-500/20" : "border-blue-500/20"
+                                    }`}
+                                style={{
+                                    animation: "spin 20s linear infinite reverse",
+                                }}
+                            />
+                            <div
+                                className={`absolute inset-16 rounded-full border-2 ${darkMode ? "border-cyan-500/10" : "border-blue-500/10"
+                                    }`}
+                                style={{
+                                    animation: "spin 40s linear infinite",
+                                }}
+                            />
+
+                            {/* Center Glow */}
+                            <div
+                                className={`absolute inset-24 rounded-full ${darkMode
+                                        ? "bg-cyan-500/20 shadow-[0_0_120px_rgba(6,182,212,0.3)]"
+                                        : "bg-blue-500/20 shadow-[0_0_120px_rgba(59,130,246,0.3)]"
+                                    } backdrop-blur-3xl animate-pulse`}
+                            />
+
+                            {/* Floating Orbs */}
+                            {[...Array(6)].map((_, i) => (
+                                <div
+                                    key={i}
+                                    className={`absolute w-5 h-5 rounded-full ${darkMode ? "bg-cyan-400" : "bg-blue-600"
+                                        } shadow-lg`}
+                                    style={{
+                                        top: "50%",
+                                        left: "50%",
+                                        animation: `orbit ${15 + i * 5}s linear infinite`,
+                                        animationDelay: `${i * 2}s`,
+                                    }}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>
+
             </div>
-            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <ChevronDown
-                    className={`${darkMode ? "text-amber-400" : "text-[#3b82f6]"} h-8 w-8`}
-                />
-            </div>
+
+            <style jsx>{`
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px) rotate(0deg); }
+                    50% { transform: translateY(-20px) rotate(180deg); }
+                }
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                @keyframes orbit {
+                    from {
+                        transform: translate(-50%, -50%) rotate(0deg) translateX(200px) rotate(0deg);
+                    }
+                    to {
+                        transform: translate(-50%, -50%) rotate(360deg) translateX(200px) rotate(-360deg);
+                    }
+                }
+            `}</style>
         </section>
     );
 };
