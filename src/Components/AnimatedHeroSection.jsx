@@ -27,8 +27,6 @@ const AnimatedHeroSection = ({ darkMode }) => {
     const [currentRole, setCurrentRole] = useState(0);
     const [displayedText, setDisplayedText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
 
     useEffect(() => {
         const roles = ["Full Stack Developer", "DevOps Engineer", "UI/UX Enthusiast", "Problem Solver"];
@@ -51,13 +49,6 @@ const AnimatedHeroSection = ({ darkMode }) => {
         return () => clearTimeout(timeout);
     }, [displayedText, isDeleting, currentRole]);
 
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
-        };
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
 
     const floatingIcons = [
         { Icon: Code2, delay: 0, duration: 20 },
@@ -68,21 +59,12 @@ const AnimatedHeroSection = ({ darkMode }) => {
 
     return (
         <section
-            className={`min-h-screen relative pt-10 flex items-center transition-all duration-700 overflow-hidden ${darkMode ? "bg-[#0a0f1e00]" : "bg-white"
+            className={`min-h-screen relative pt-10 flex items-center transition-all duration-700 overflow-hidden ${darkMode ? "bg-[#0a0f1e59]" : "bg-white"
                 }`}
         >
             {/* Animated Grid Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div
-                    className={`absolute inset-0 ${darkMode ? "opacity-20" : "opacity-10"
-                        }`}
-                    style={{
-                        backgroundImage: `linear-gradient(${darkMode ? "#1e3a8a" : "#3b82f6"} 1px, transparent 1px), linear-gradient(90deg, ${darkMode ? "#1e3a8a" : "#3b82f6"} 1px, transparent 1px)`,
-                        backgroundSize: "50px 50px",
-                        transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
-                        transition: "transform 0.3s ease-out",
-                    }}
-                />
+
 
                 {/* Floating Icons */}
                 {floatingIcons.map(({ Icon, delay, duration }, index) => (
@@ -103,14 +85,14 @@ const AnimatedHeroSection = ({ darkMode }) => {
 
             {/* Main Content */}
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 relative z-10 w-full">
-                <div className="grid lg:grid-cols-3 gap-16 items-center">
+                <div className="grid lg:grid-cols-10  gap-16 items-center">
                     {/* Left Content */}
-                    <div className="space-y-8 lg:col-span-2">
+                    <div className="space-y-8  lg:col-span-6">
                         {/* Greeting Badge */}
                         <div
                             className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm ${darkMode
-                                    ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
-                                    : "bg-blue-500/10 border-blue-500/30 text-blue-600"
+                                ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+                                : "bg-blue-500/10 border-blue-500/30 text-blue-600"
                                 }`}
                         >
                             <Sparkles className="w-4 h-4 animate-pulse" />
@@ -166,8 +148,8 @@ const AnimatedHeroSection = ({ darkMode }) => {
                                     window.open("/Resume/VrajVyasResume.pdf", "_blank")
                                 }
                                 className={`${darkMode
-                                        ? "bg-cyan-500 hover:bg-cyan-400 text-gray-900"
-                                        : "bg-blue-600 hover:bg-blue-700 text-white"
+                                    ? "bg-cyan-500 hover:bg-cyan-400 text-gray-900"
+                                    : "bg-blue-600 hover:bg-blue-700 text-white"
                                     } shadow-lg`}
                             >
                                 View Resume
@@ -176,8 +158,8 @@ const AnimatedHeroSection = ({ darkMode }) => {
                             <a
                                 href="#contact"
                                 className={`group px-8 py-4 rounded-2xl font-semibold text-base tracking-wide transition-all duration-300 hover:scale-105 flex items-center gap-3 border-2 ${darkMode
-                                        ? "border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10"
-                                        : "border-blue-600/50 text-blue-600 hover:bg-blue-600/10"
+                                    ? "border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10"
+                                    : "border-blue-600/50 text-blue-600 hover:bg-blue-600/10"
                                     }`}
                             >
                                 <Mail className="w-5 h-5" />
@@ -191,8 +173,8 @@ const AnimatedHeroSection = ({ darkMode }) => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={`group relative p-4 rounded-xl border-2 transition-all duration-300 hover:scale-110 ${darkMode
-                                            ? "bg-gray-900 border-gray-800 hover:border-cyan-500 text-gray-400 hover:text-cyan-400"
-                                            : "bg-gray-50 border-gray-200 hover:border-blue-600 text-gray-600 hover:text-blue-600"
+                                        ? "bg-gray-900 border-gray-800 hover:border-cyan-500 text-gray-400 hover:text-cyan-400"
+                                        : "bg-gray-50 border-gray-200 hover:border-blue-600 text-gray-600 hover:text-blue-600"
                                         }`}
                                 >
                                     <Github className="w-6 h-6" />
@@ -206,8 +188,8 @@ const AnimatedHeroSection = ({ darkMode }) => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={`group relative p-4 rounded-xl border-2 transition-all duration-300 hover:scale-110 ${darkMode
-                                            ? "bg-gray-900 border-gray-800 hover:border-cyan-500 text-gray-400 hover:text-cyan-400"
-                                            : "bg-gray-50 border-gray-200 hover:border-blue-600 text-gray-600 hover:text-blue-600"
+                                        ? "bg-gray-900 border-gray-800 hover:border-cyan-500 text-gray-400 hover:text-cyan-400"
+                                        : "bg-gray-50 border-gray-200 hover:border-blue-600 text-gray-600 hover:text-blue-600"
                                         }`}
                                 >
                                     <Linkedin className="w-6 h-6" />
@@ -221,8 +203,8 @@ const AnimatedHeroSection = ({ darkMode }) => {
                     </div>
 
                     {/* Right Content - Abstract Illustration */}
-                    <div className="relative mt-10 lg:block hidden">
-                        <div className="relative w-full aspect-square max-w-7xl mx-auto">
+                    <div className="relative w-full lg:col-span-4 h-full mt-10 lg:block hidden">
+                        <div className="relative w-full  aspect-square max-w-7xl mx-auto">
                             {/* Hero Image */}
                             <img
                                 src="/hero.png"
@@ -259,8 +241,8 @@ const AnimatedHeroSection = ({ darkMode }) => {
                             {/* Center Glow */}
                             <div
                                 className={`absolute inset-24 rounded-full ${darkMode
-                                        ? "bg-cyan-500/20 shadow-[0_0_120px_rgba(6,182,212,0.3)]"
-                                        : "bg-blue-500/20 shadow-[0_0_120px_rgba(59,130,246,0.3)]"
+                                    ? "bg-cyan-500/20 shadow-[0_0_120px_rgba(6,182,212,0.3)]"
+                                    : "bg-blue-500/20 shadow-[0_0_120px_rgba(59,130,246,0.3)]"
                                     } backdrop-blur-3xl animate-pulse`}
                             />
 
@@ -295,10 +277,10 @@ const AnimatedHeroSection = ({ darkMode }) => {
                 }
                 @keyframes orbit {
                     from {
-                        transform: translate(-50%, -50%) rotate(0deg) translateX(200px) rotate(0deg);
+                        transform: translate(-50%, -50%) rotate(0deg) translateX(250px) rotate(0deg);
                     }
                     to {
-                        transform: translate(-50%, -50%) rotate(360deg) translateX(200px) rotate(-360deg);
+                        transform: translate(-50%, -50%) rotate(360deg) translateX(250px) rotate(-360deg);
                     }
                 }
             `}</style>

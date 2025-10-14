@@ -12,7 +12,7 @@ import ProjectCard from "../Components/ProjectCard";
 import useGithubProjects from "../hooks/useGithubProjects";
 import skillsData from "../constants/Skills";
 import Education, { Years } from "../constants/Education";
-import { ArrowBigUpDash } from "lucide-react";
+import { ArrowBigUpDash, Sparkles } from "lucide-react";
 
 const Home = () => {
   const { projects } = useGithubProjects();
@@ -22,7 +22,7 @@ const Home = () => {
   const [showProjectGallery, setShowProjectGallery] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
-
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const openProjectModal = (project) => {
     setSelectedProject(project);
     document.body.style.overflow = "hidden";
@@ -65,6 +65,13 @@ const Home = () => {
   };
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   // small loading/error states handled in ProjectGallery, but show spinner for hero-to-project flow
   return (
@@ -78,7 +85,21 @@ const Home = () => {
         setDarkMode={setDarkMode}
         onViewAllProjects={handleViewAllProjects}
       />
-
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div
+          className={`absolute inset-0 ${darkMode ? "opacity-20" : "opacity-10"}`}
+          style={{
+            backgroundImage: `linear-gradient(${
+              darkMode ? "#1e3a8a" : "#3b82f6"
+            } 1px, transparent 1px), linear-gradient(90deg, ${
+              darkMode ? "#1e3a8a" : "#3b82f6"
+            } 1px, transparent 1px)`,
+            backgroundSize: "50px 50px",
+            transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`,
+            transition: "transform 0.3s ease-out",
+          }}
+        />
+      </div>
       {!showProjectGallery ? (
         <>
           <section id="home">
@@ -92,6 +113,15 @@ const Home = () => {
           <section id="skills" className={`py-12 ${darkMode ? "text-gray-300" : "text-gray-900 bg-gray-100"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-8">
+                          <div
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm mb-6 ${darkMode
+                ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+                : "bg-blue-500/10 border-blue-500/30 text-blue-600"
+              }`}
+          >
+            <Sparkles className="w-4 h-4 animate-pulse" />
+            <span className="text-sm font-semibold tracking-wide">What i use and Know</span>
+          </div>
                 <h2 className="text-3xl sm:text-4xl font-bold mb-3 flex items-center justify-center gap-3">
                   <img src={`https://img.icons8.com/?size=64&id=wWh3KNXLFm0y&format=png&color=${darkMode ? "ffffff" : "000000"}`} alt="skills" className="w-10 h-10" />
                   Skills & Technologies
@@ -109,6 +139,15 @@ const Home = () => {
           <section id="education" className={`py-12 ${darkMode ? "bg-[#03050e]/90 text-white" : "bg-white text-gray-900"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-8">
+                                          <div
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm mb-6 ${darkMode
+                ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+                : "bg-blue-500/10 border-blue-500/30 text-blue-600"
+              }`}
+          >
+            <Sparkles className="w-4 h-4 animate-pulse" />
+            <span className="text-sm font-semibold tracking-wide">What i studied till now</span>
+          </div>
                 <h2 className="text-3xl sm:text-4xl font-bold mb-3 flex items-center justify-center gap-3">
                   <img src={`https://img.icons8.com/?size=64&id=11225&format=png&color=${darkMode ? "ffffff" : "000000"}`} alt="education" className="w-10 h-10" />
                   My Education
@@ -129,8 +168,12 @@ const Home = () => {
                 </div>
 
                 <div className="relative md:flex hidden justify-center items-center w-16 flex-shrink-0">
-                  <div className="w-12 inset-0 absolute border-double border-b-8 border-gray-800/50 h-1 rounded-full" />
-                  <div className={`absolute w-0.5 h-full ${darkMode ? "bg-gradient-to-b from-gray-400/50 to-gray-600/50" : "bg-gradient-to-b from-gray-600/50 to-gray-800/50"}`} />
+                  <div className={`inset-0 flex justify-center items-center absolute -mt-7 border-solid h-16 w-16  rounded-full border-y-8 z-10 ${darkMode?"border-gray-600":"border-gray-400"}   `} >
+                    <div className={`h-5 w-5 rounded-full  shadow-[0_0_10px_rgba(6,182,212,1)]  shadow-sky-500 ${darkMode?"bg-blue-200 ":"bg-blue-400 "} `}/>
+                    </div>
+    <div className={`bottom-0 flex justify-center items-center absolute -mb-7 border-solid h-16 w-16  rounded-full border-y-8 z-10 ${darkMode?"border-gray-600":"border-gray-400"}   `} >
+                    <div className={`h-5 w-5 rounded-full  shadow-[0_0_10px_rgba(6,182,212,1)]  shadow-sky-500 ${darkMode?"bg-blue-200 ":"bg-blue-400 "} `}/>
+                    </div>                  <div className={`absolute w-0.5 h-full ${darkMode ? "bg-gradient-to-b from-gray-400/50 to-gray-600/50" : "bg-gradient-to-b from-gray-600/50 to-gray-800/50"}`} />
                   {Years.map((y, i) => (
                     <div key={i} className={`absolute ${y.offset} whitespace-nowrap text-sm font-semibold text-gray-900 transform -translate-y-1/2 bg-white/80 px-3 py-1 rounded-full`}>
                       {y.year}

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Mail,
   Phone,
@@ -5,265 +6,272 @@ import {
   Github,
   Linkedin,
   User,
-  CircleQuestionMark,
   MessageCircleMore,
   Headset,
+  Send,
+  Sparkles,
 } from "lucide-react";
 
-function ContactMe({darkMode=true}) {
-    return (
-                 <section
-        id="education"
-        className={`py-12 sm:py-20 transition-all duration-500 ${darkMode ? "bg-[#03050e]/90 text-white" : "bg-white/50 text-gray-900"
-          }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 sm:mb-12 relative">
-            <div className="relative z-10 flex flex-col items-center">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 flex flex-row justify-center items-center gap-3 sm:gap-4">
-                <Headset strokeWidth={3} 
-                  className="w-10 h-10 sm:w-14 sm:h-14"
-                />
-                Get In Touch
-              </h2>
-              <p className="text-base sm:text-lg max-w-2xl mx-auto">
-                  Interested in collaborating? Reach out to discuss your project!
-              </p>
+
+function ContactMe({ darkMode = true }) {
+
+  const contactInfo = [
+    { icon: Mail, label: "Email", value: "vyasvraj92@gmail.com" },
+    { icon: Phone, label: "Phone", value: "+91 9104511100" },
+    { icon: MapPin, label: "Location", value: "Nadiad, Gujarat, India" },
+  ];
+
+  return (
+    <section
+      id="contact"
+      className={`relative py-20 transition-all duration-700 overflow-hidden ${
+        darkMode ? "bg-[#0a0f1e00]" : "bg-white"
+      }`}
+    >
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div
+            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm mb-6 ${
+              darkMode
+                ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+                : "bg-blue-500/10 border-blue-500/30 text-blue-600"
+            }`}
+          >
+            <Sparkles className="w-4 h-4 animate-pulse" />
+            <span className="text-sm font-semibold tracking-wide">
+              Let's Connect
+            </span>
+          </div>
+
+          <h2
+            className={`text-5xl lg:text-6xl font-black tracking-tight mb-4 flex items-center justify-center gap-4 ${
+              darkMode ? "text-white" : "text-gray-900"
+            }`}
+          >
+            <Headset className="w-12 h-12" />
+            Get In Touch
+          </h2>
+          <p
+            className={`text-xl max-w-3xl mx-auto ${
+              darkMode ? "text-gray-400" : "text-gray-600"
+            }`}
+          >
+            Interested in collaborating? Reach out to discuss your project!
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Left - Contact Info Cards */}
+
+          <div className="space-y-6">
+            <div className=" flex flex-row  justify-center">
+            <div className="relative  w-[500px]  h-full z-10 hidden md:block ">    </div>
+              <img
+                src="/contact.png"
+                alt="Contact illustration"
+                className="w-[36%] top-10 left-0 absolute h-full z-10 object-contain rounded-3xl"
+              />
+        
+<div className=" flex flex-col items-end gap-4">
+            {contactInfo.map(({ icon: Icon, label, value }) => (
+              <div
+                key={label}
+                className={`group w-fit p-6 rounded-2xl border-2 backdrop-blur-sm transition-all duration-300 hover:scale-105 ${
+                  darkMode
+                    ? "bg-gray-900/50 border-cyan-500/20 hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.2)]"
+                    : "bg-white/80 border-blue-500/20 hover:border-blue-500/40 hover:shadow-lg"
+                }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div
+                    className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 ${
+                      darkMode
+                        ? "bg-cyan-500/20 group-hover:bg-cyan-500/30"
+                        : "bg-blue-500/20 group-hover:bg-blue-500/30"
+                    }`}
+                  >
+                    <Icon
+                      className={`w-7 h-7 ${
+                        darkMode ? "text-cyan-400" : "text-blue-600"
+                      }`}
+                    />
+                  </div>
+                  <div>
+                    <h3
+                      className={`text-lg font-bold mb-1 ${
+                        darkMode ? "text-gray-200" : "text-gray-900"
+                      }`}
+                    >
+                      {label}
+                    </h3>
+                    <p
+                      className={`${
+                        darkMode ? "text-gray-400" : "text-gray-600"
+                      }`}
+                    >
+                      {value}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+            </div>
+</div>
+            {/* Social Links */}
+            <div className="flex gap-4">
+              <a
+                href="https://github.com/VrajVyas11"
+                className={`flex-1 p-4 rounded-2xl border-2 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-105 ${
+                  darkMode
+                    ? "bg-gray-900/50 border-cyan-500/20 hover:border-cyan-500/40 text-cyan-400"
+                    : "bg-white/80 border-blue-500/20 hover:border-blue-500/40 text-blue-600"
+                }`}
+              >
+                <Github className="w-6 h-6" />
+                <span className="font-semibold">GitHub</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/vraj-vyas"
+                className={`flex-1 p-4 rounded-2xl border-2 flex items-center justify-center gap-3 transition-all duration-300 hover:scale-105 ${
+                  darkMode
+                    ? "bg-gray-900/50 border-cyan-500/20 hover:border-cyan-500/40 text-cyan-400"
+                    : "bg-white/80 border-blue-500/20 hover:border-blue-500/40 text-blue-600"
+                }`}
+              >
+                <Linkedin className="w-6 h-6" />
+                <span className="font-semibold">LinkedIn</span>
+              </a>
             </div>
           </div>
-                <div className="grid md:grid-cols-2 gap-12">
-                    <div className="space-y-8 relative hidden md:block">
-                        <div className="flex justify-center relative z-10">
-                            <img
-                                src="/contact.png"
-                                alt="Contact illustration"
-                                className="w-full h-auto object-cover"
-                            />
-                        </div>
-                        <div
-                            className={`absolute -top-12 -left-12 rounded-xl p-6 shadow-sm border transform hover:-translate-y-1 transition-all duration-300 ${darkMode ? "bg-gray-950 border-gray-700" : "bg-white border-gray-200"
-                                }`}
-                        >
-                            <div className="flex items-center space-x-4">
-                                <div
-                                    className={`w-12 h-12 rounded-full flex items-center justify-center ${darkMode ? "bg-gray-800" : "bg-gray-100"
-                                        }`}
-                                >
-                                    <Mail
-                                        className={`h-6 w-6 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className={`text-lg font-semibold ${darkMode ? "text-gray-300" : "text-gray-900"}`}>
-                                        Email
-                                    </h3>
-                                    <p className={darkMode ? "text-gray-400" : "text-gray-600"}>
-                                        vyasvraj92@gmail.com
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            className={`absolute -top-12 -right-0 min-w-64 rounded-xl p-6 shadow-sm border transform hover:-translate-y-1 transition-all duration-300 ${darkMode ? "bg-gray-950 border-gray-700" : "bg-white border-gray-200"
-                                }`}
-                        >
-                            <div className="flex items-center space-x-4">
-                                <div
-                                    className={`w-12 h-12 rounded-full flex items-center justify-center ${darkMode ? "bg-gray-800" : "bg-gray-100"
-                                        }`}
-                                >
-                                    <Phone
-                                        className={`h-6 w-6 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className={`text-lg font-semibold ${darkMode ? "text-gray-300" : "text-gray-900"}`}>
-                                        Phone
-                                    </h3>
-                                    <p className={darkMode ? "text-gray-400" : "text-gray-600"}>
-                                        +91 9104511100
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            className={`absolute bottom-0 -left-12 rounded-xl p-6 shadow-sm border transform hover:-translate-y-1 transition-all duration-300 ${darkMode ? "bg-gray-950 border-gray-700" : "bg-white border-gray-200"
-                                }`}
-                        >
-                            <div className="flex items-center space-x-4">
-                                <div
-                                    className={`w-12 h-12 rounded-full flex items-center justify-center ${darkMode ? "bg-gray-800" : "bg-gray-100"
-                                        }`}
-                                >
-                                    <MapPin
-                                        className={`h-6 w-6 ${darkMode ? "text-gray-400" : "text-gray-600"}`}
-                                    />
-                                </div>
-                                <div>
-                                    <h3 className={`text-lg font-semibold ${darkMode ? "text-gray-300" : "text-gray-900"}`}>
-                                        Location
-                                    </h3>
-                                    <p className={darkMode ? "text-gray-400" : "text-gray-600"}>
-                                        Nadiad, Gujarat, India
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex space-x-4 z-40 absolute bottom-8 -right-6">
-                            <a
-                                href="https://github.com/VrajVyas11"
-                                className={`w-12 h-12 rounded-full flex items-center justify-center shadow-sm border transition-colors transform hover:scale-105 ${darkMode
-                                    ? "bg-gray-800 border-gray-700 hover:bg-gray-700"
-                                    : "bg-white border-gray-200 hover:bg-gray-50"
-                                    }`}
-                            >
-                                <Github
-                                    className={`h-5 w-5 ${darkMode ? "text-gray-300" : "text-gray-600"}`}
-                                />
-                            </a>
-                            <a
-                                href="https://www.linkedin.com/in/vraj-vyas"
-                                className={`w-12 h-12 rounded-full flex items-center justify-center shadow-sm border transition-colors transform hover:scale-105 ${darkMode
-                                    ? "bg-gray-800 border-gray-700 hover:bg-gray-700"
-                                    : "bg-white border-gray-200 hover:bg-gray-50"
-                                    }`}
-                            >
-                                <Linkedin
-                                    className={`h-5 w-5 ${darkMode ? "text-gray-300" : "text-gray-600"}`}
-                                />
-                            </a>
-                        </div>
-                    </div>
-                    <div
-                        className={`rounded-xl p-8 shadow-sm border transition-colors duration-500 ${darkMode ? "bg-gray-950 border-gray-700" : "bg-white border-gray-200"
-                            } -mt-4`}
-                    >
-                        <form className="space-y-4">
-                            <div>
-                                <label
-                                    htmlFor="name"
-                                    className={`block text-sm font-medium mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"
-                                        }`}
-                                >
-                                    Full Name
-                                </label>
-                                <div className="relative">
-                                    <div
-                                        className={`flex items-center border rounded-lg focus-within:ring-2 focus-within:ring-gray-500 focus-within:border-transparent transition-all duration-300 ${darkMode
-                                            ? "border-gray-600 bg-black/5 backdrop-blur-md"
-                                            : "border-gray-600 bg-transparent"
-                                            }`}
-                                    >
-                                        <User
-                                            className={`h-6 w-6 mx-3 ${darkMode ? "text-gray-400" : "text-black"
-                                                }`}
-                                        />
-                                        <input
-                                            type="text"
-                                            id="name"
-                                            className={`w-full px-4 py-3 focus:outline-none transition-all bg-transparent duration-300 ${darkMode ? "text-gray-300" : ""
-                                                }`}
-                                            placeholder="Enter your full name"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="email"
-                                    className={`block text-sm font-medium mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"
-                                        }`}
-                                >
-                                    Email Address
-                                </label>
-                                <div
-                                    className={`flex items-center border rounded-lg focus-within:ring-2 focus-within:ring-gray-500 focus-within:border-transparent transition-all duration-300 ${darkMode
-                                        ? "border-gray-600 bg-black/5 backdrop-blur-md"
-                                        : "border-gray-600 bg-transparent"
-                                        }`}
-                                >
-                                    <Mail
-                                        className={`h-6 w-6 mx-3 ${darkMode ? "text-gray-400" : "text-black"
-                                            }`}
-                                    />
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        className={`w-full px-4 py-3 focus:outline-none transition-all bg-transparent duration-300 ${darkMode ? "text-gray-300" : ""
-                                            }`}
-                                        placeholder="Enter your email address"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="subject"
-                                    className={`block text-sm font-medium mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"
-                                        }`}
-                                >
-                                    Subject
-                                </label>
-                                <div
-                                    className={`flex items-center border rounded-lg focus-within:ring-2 focus-within:ring-gray-500 focus-within:border-transparent transition-all duration-300 ${darkMode
-                                        ? "border-gray-600 bg-black/5 backdrop-blur-md"
-                                        : "border-gray-600 bg-transparent"
-                                        }`}
-                                >
-                                    <CircleQuestionMark
-                                        className={`h-6 w-6 mx-3 ${darkMode ? "text-gray-400" : "text-black"
-                                            }`}
-                                    />
-                                    <input
-                                        type="text"
-                                        id="subject"
-                                        className={`w-full px-4 py-3 focus:outline-none transition-all bg-transparent duration-300 ${darkMode ? "text-gray-300" : ""
-                                            }`}
-                                        placeholder="What's this about?"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="message"
-                                    className={`block text-sm font-medium mb-2 ${darkMode ? "text-gray-300" : "text-gray-700"
-                                        }`}
-                                >
-                                    Message
-                                </label>
-                                <div className="relative">
-                                    <div
-                                        className={`flex border rounded-lg focus-within:ring-2 focus-within:ring-gray-500 focus-within:border-transparent transition-all duration-300 ${darkMode ? "border-gray-600 bg-gray-950" : "border-gray-600 bg-transparent"
-                                            }`}
-                                    >
-                                        <MessageCircleMore
-                                            className={`h-6 w-6 mx-3 mt-3.5 ${darkMode ? "text-gray-400" : "text-black"
-                                                }`}
-                                        />
-                                        <textarea
-                                            id="message"
-                                            rows={3}
-                                            className={`w-full px-4 py-3 focus:outline-none transition-all bg-transparent duration-300 ${darkMode ? "text-gray-300" : ""
-                                                }`}
-                                            placeholder="Tell me about your project..."
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-                                type="submit"
-                                className={`w-full px-8 py-3 rounded-lg font-medium transition-colors transform hover:scale-105 ${darkMode
-                                    ? "bg-white text-black hover:bg-gray-200"
-                                    : "bg-gray-900 text-white hover:bg-gray-800"
-                                    }`}
-                            >
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
+
+          {/* Right - Contact Form */}
+          <div
+            className={`p-8 rounded-3xl border-2 backdrop-blur-sm ${
+              darkMode
+                ? "bg-gray-900/50 border-cyan-500/20"
+                : "bg-white/80 border-blue-500/20"
+            }`}
+          >
+            <form className="space-y-6">
+              {/* Name Input */}
+              <div>
+                <label
+                  htmlFor="name"
+                  className={`block text-sm font-semibold mb-2 ${
+                    darkMode ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
+                  Full Name
+                </label>
+                <div
+                  className={`flex items-center border-2 rounded-xl transition-all duration-300 ${
+                    darkMode
+                      ? "border-cyan-500/30 bg-gray-800/50 focus-within:border-cyan-500/60"
+                      : "border-blue-500/30 bg-white focus-within:border-blue-500/60"
+                  }`}
+                >
+                  <User
+                    className={`ml-4 w-5 h-5 ${
+                      darkMode ? "text-cyan-400" : "text-blue-600"
+                    }`}
+                  />
+                  <input
+                    type="text"
+                    id="name"
+                    className={`w-full px-4 py-4 bg-transparent focus:outline-none ${
+                      darkMode ? "text-gray-200" : "text-gray-900"
+                    }`}
+                    placeholder="Enter your full name"
+                  />
                 </div>
-            </div>
-        </section>
-    )
+              </div>
+
+              {/* Email Input */}
+              <div>
+                <label
+                  htmlFor="email"
+                  className={`block text-sm font-semibold mb-2 ${
+                    darkMode ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
+                  Email Address
+                </label>
+                <div
+                  className={`flex items-center border-2 rounded-xl transition-all duration-300 ${
+                    darkMode
+                      ? "border-cyan-500/30 bg-gray-800/50 focus-within:border-cyan-500/60"
+                      : "border-blue-500/30 bg-white focus-within:border-blue-500/60"
+                  }`}
+                >
+                  <Mail
+                    className={`ml-4 w-5 h-5 ${
+                      darkMode ? "text-cyan-400" : "text-blue-600"
+                    }`}
+                  />
+                  <input
+                    type="email"
+                    id="email"
+                    className={`w-full px-4 py-4 bg-transparent focus:outline-none ${
+                      darkMode ? "text-gray-200" : "text-gray-900"
+                    }`}
+                    placeholder="Enter your email address"
+                  />
+                </div>
+              </div>
+
+              {/* Message Input */}
+              <div>
+                <label
+                  htmlFor="message"
+                  className={`block text-sm font-semibold mb-2 ${
+                    darkMode ? "text-gray-300" : "text-gray-700"
+                  }`}
+                >
+                  Message
+                </label>
+                <div
+                  className={`flex border-2 rounded-xl transition-all duration-300 ${
+                    darkMode
+                      ? "border-cyan-500/30 bg-gray-800/50 focus-within:border-cyan-500/60"
+                      : "border-blue-500/30 bg-white focus-within:border-blue-500/60"
+                  }`}
+                >
+                  <MessageCircleMore
+                    className={`ml-4 mt-4 w-5 h-5 ${
+                      darkMode ? "text-cyan-400" : "text-blue-600"
+                    }`}
+                  />
+                  <textarea
+                    id="message"
+                    rows={4}
+                    className={`w-full px-4 py-4 bg-transparent focus:outline-none resize-none ${
+                      darkMode ? "text-gray-200" : "text-gray-900"
+                    }`}
+                    placeholder="Tell me about your project..."
+                  />
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className={`w-full px-8 py-4 rounded-xl font-bold text-base tracking-wide transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 shadow-lg ${
+                  darkMode
+                    ? "bg-cyan-500 hover:bg-cyan-400 text-gray-900"
+                    : "bg-blue-600 hover:bg-blue-700 text-white"
+                }`}
+              >
+                Send Message
+                <Send className="w-5 h-5" />
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
-export default ContactMe
+export default ContactMe;

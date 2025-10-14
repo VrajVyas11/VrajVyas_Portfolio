@@ -1,13 +1,7 @@
 import React from "react";
 import useInView from "../hooks/useInView";
+import { Calendar, MapPin } from "lucide-react";
 
-/**
- * New look:
- * - Solid accent left stripe, card with prominent degree title,
- * - Institution + tiny pill for year, smaller details under,
- * - Avatar/logo circle on left (no stretched images),
- * - Uses useInView for entrance animation (no re-renders).
- */
 const EducationCard = ({
   degree,
   image,
@@ -16,70 +10,88 @@ const EducationCard = ({
   details,
   darkMode = true,
 }) => {
-  const [ref, inView] = useInView({threshold:0.3});
-
-  const cardBg = darkMode ? "bg-[#040917]" : "bg-white";
-  const cardBorder = darkMode ? "border-gray-700" : "border-gray-200";
-  const primaryText = darkMode ? "text-gray-100" : "text-gray-900";
-  const mutedText = darkMode ? "text-gray-300" : "text-gray-600";
+  const [ref, inView] = useInView({ threshold: 0.3 });
 
   return (
     <article
       ref={ref}
-      className={`relative overflow-hidden rounded-2xl border ${cardBorder} ${cardBg} shadow-sm cursor-pointer hover:scale-[102%] transform transition-all duration-500 ${
-        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-      }`}
-      aria-label={`${degree} at ${institution}`}
+      className={`group relative overflow-hidden backdrop-blur-lg rounded-3xl border-l-8  shadow-lg cursor-pointer transform transition-all duration-700 ${
+        inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      } ${
+        darkMode
+          ? " border-sky-700/50 !shadow-[inset_0_0px_12px_rgba(34,211,238,0.2)] hover:shadow-[0_0_30px_rgba(6,182,212,0.2)]"
+          : " border-blue-500/20 hover:border-blue-500/40 hover:shadow-xl"
+      } hover:scale-[102%]`}
     >
-      {/* Solid accent stripe */}
+      {/* Gradient overlay on hover */}
       <div
-        className={`absolute left-0 top-0 bottom-0 w-2 ${darkMode ? "bg-amber-500" : "bg-amber-600"
-          }`}
-        aria-hidden
+        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+          darkMode
+            ? "bg-gradient-to-br from-cyan-500/5 to-transparent"
+            : "bg-gradient-to-br from-blue-500/5 to-transparent"
+        }`}
       />
-      <div className="flex items-center gap-4 p-4 sm:p-5 pl-6 sm:pl-8">
-        {/* logo/avatar */}
+
+      <div className="relative z-10 flex flex-col sm:flex-row items-center gap-6 p-6">
+        {/* Logo/Image */}
         <div
-          className={`flex-shrink-0 rounded-full overflow-hidden w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center ${darkMode ? "bg-gray-900" : "bg-gray-100"
-            }`}
+          className={`flex-shrink-0 rounded-2xl overflow-hidden w-24 h-24 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 ${
+            darkMode ? "bg-gray-800/50" : "bg-gray-100"
+          }`}
         >
-          {/* keep object-cover but contained */}
           <img
             src={image}
-            alt={`${degree} logo`}
-            className=" object-fill h-full w-full"
+            alt={`${institution} logo`}
+            className="object-cover h-full w-full"
             loading="lazy"
           />
         </div>
 
-        {/* content */}
+        {/* Content */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <h3
-                className={`text-lg sm:text-2xl font-extrabold leading-tight ${primaryText}`}
+          {/* Degree */}
+          <h3
+            className={`text-2xl font-black leading-tight mb-2 ${
+              darkMode ? "text-white" : "text-gray-900"
+            }`}
+          >
+            {degree}
+          </h3>
+
+          {/* Institution & Year */}
+          <div className="flex flex-wrap items-center gap-3 mb-3">
+            <div className="flex items-center gap-2">
+              <MapPin
+                className={`w-4 h-4 ${darkMode ? "text-cyan-400" : "text-blue-600"}`}
+              />
+              <p
+                className={`text-sm font-medium ${
+                  darkMode ? "text-gray-300" : "text-gray-700"
+                }`}
               >
-                {degree}
-              </h3>
-              <div className="flex items-center gap-2 mt-1">
-                <p className={`text-sm ${mutedText} truncate`}>{institution}</p>
-                <span
-                  className={`ml-2 inline-block text-xs font-semibold px-2 py-1 rounded-full ${darkMode ? "bg-gray-800 text-amber-300" : "bg-amber-50 text-amber-700"
-                    }`}
-                >
-                  {year}
-                </span>
-              </div>
+                {institution}
+              </p>
             </div>
+            <span
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${
+                darkMode
+                  ? "bg-cyan-500/20 text-cyan-300"
+                  : "bg-blue-500/20 text-blue-700"
+              }`}
+            >
+              <Calendar className="w-3 h-3" />
+              {year}
+            </span>
           </div>
 
+          {/* Details */}
           <p
-            className={`mt-3 text-sm sm:text-base leading-relaxed ${mutedText} max-w-prose`}
-            title={details}
+            className={`text-sm leading-relaxed ${
+              darkMode ? "text-gray-400" : "text-gray-600"
+            }`}
           >
             {details}
           </p>
-
         </div>
       </div>
     </article>
