@@ -25,7 +25,7 @@ const EducationCard = ({
     >
       {/* Gradient overlay on hover */}
       <div
-        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+        className={`absolute  inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
           darkMode
             ? "bg-gradient-to-br from-cyan-500/5 to-transparent"
             : "bg-gradient-to-br from-blue-500/5 to-transparent"

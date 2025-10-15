@@ -59,8 +59,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
 
     return (
         <section
-            className={`min-h-screen relative pt-10 flex items-center transition-all duration-700 overflow-hidden ${darkMode ? "bg-[#0a0f1e59]" : "bg-white"
-                }`}
+            className={`min-h-screen relative pt-10 flex items-center transition-all duration-700 overflow-hidden `}
         >
             {/* Animated Grid Background */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -87,7 +86,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-16 py-20 relative z-10 w-full">
                 <div className="grid lg:grid-cols-10  gap-16 items-center">
                     {/* Left Content */}
-                    <div className="space-y-8  lg:col-span-6">
+                    <div className="space-y-8 flex justify-center flex-col sm:items-start items-center  lg:col-span-6">
                         {/* Greeting Badge */}
                         <div
                             className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm ${darkMode
@@ -133,7 +132,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
 
                         {/* Description */}
                         <p
-                            className={`text-lg lg:text-xl leading-relaxed max-w-xl ${darkMode ? "text-gray-400" : "text-gray-600"
+                            className={`text-lg lg:text-xl leading-relaxed ml-6 sm:ml-0 ${darkMode ? "text-gray-400" : "text-gray-600"
                                 }`}
                         >
                             Crafting seamless digital experiences with modern web technologies.

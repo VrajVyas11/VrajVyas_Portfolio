@@ -89,11 +89,9 @@ const Home = () => {
         <div
           className={`absolute inset-0 ${darkMode ? "opacity-20" : "opacity-10"}`}
           style={{
-            backgroundImage: `linear-gradient(${
-              darkMode ? "#1e3a8a" : "#3b82f6"
-            } 1px, transparent 1px), linear-gradient(90deg, ${
-              darkMode ? "#1e3a8a" : "#3b82f6"
-            } 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(${darkMode ? "#1e3a8a" : "#3b82f6"
+              } 1px, transparent 1px), linear-gradient(90deg, ${darkMode ? "#1e3a8a" : "#3b82f6"
+              } 1px, transparent 1px)`,
             backgroundSize: "50px 50px",
             transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`,
             transition: "transform 0.3s ease-out",
@@ -113,15 +111,15 @@ const Home = () => {
           <section id="skills" className={`py-12 ${darkMode ? "text-gray-300" : "text-gray-900 bg-gray-100"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-8">
-                          <div
-            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm mb-6 ${darkMode
-                ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
-                : "bg-blue-500/10 border-blue-500/30 text-blue-600"
-              }`}
-          >
-            <Sparkles className="w-4 h-4 animate-pulse" />
-            <span className="text-sm font-semibold tracking-wide">What i use and Know</span>
-          </div>
+                <div
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm mb-6 ${darkMode
+                    ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+                    : "bg-blue-500/10 border-blue-500/30 text-blue-600"
+                    }`}
+                >
+                  <Sparkles className="w-4 h-4 animate-pulse" />
+                  <span className="text-sm font-semibold tracking-wide">What i use and Know</span>
+                </div>
                 <h2 className="text-3xl sm:text-4xl font-bold mb-3 flex items-center justify-center gap-3">
                   <img src={`https://img.icons8.com/?size=64&id=wWh3KNXLFm0y&format=png&color=${darkMode ? "ffffff" : "000000"}`} alt="skills" className="w-10 h-10" />
                   Skills & Technologies
@@ -139,15 +137,15 @@ const Home = () => {
           <section id="education" className={`py-12 ${darkMode ? "bg-[#03050e]/90 text-white" : "bg-white text-gray-900"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-8">
-                                          <div
-            className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm mb-6 ${darkMode
-                ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
-                : "bg-blue-500/10 border-blue-500/30 text-blue-600"
-              }`}
-          >
-            <Sparkles className="w-4 h-4 animate-pulse" />
-            <span className="text-sm font-semibold tracking-wide">What i studied till now</span>
-          </div>
+                <div
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm mb-6 ${darkMode
+                    ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+                    : "bg-blue-500/10 border-blue-500/30 text-blue-600"
+                    }`}
+                >
+                  <Sparkles className="w-4 h-4 animate-pulse" />
+                  <span className="text-sm font-semibold tracking-wide">What i studied till now</span>
+                </div>
                 <h2 className="text-3xl sm:text-4xl font-bold mb-3 flex items-center justify-center gap-3">
                   <img src={`https://img.icons8.com/?size=64&id=11225&format=png&color=${darkMode ? "ffffff" : "000000"}`} alt="education" className="w-10 h-10" />
                   My Education
@@ -159,23 +157,23 @@ const Home = () => {
                 <div className="relative flex-1 space-y-6">
                   {Education.map((edu, idx) => (
                     <div key={idx} className="relative flex items-center group">
-                      <div className="flex-1 ml-12">
+                      <div className="flex-1 sm:ml-12">
                         <EducationCard degree={edu.degree} image={edu.image} institution={edu.institution} year={edu.year} details={edu.details} darkMode={darkMode} />
                       </div>
-                      <div className="absolute left-0 md:left-[30px] w-3 h-3 bg-gray-900 rounded-full border-2 border-gray-300 shadow-md group-hover:bg-gray-700 transition-all" />
+                      <div className="absolute hidden sm:block left-0 md:left-[30px] w-3 h-3 bg-gray-900 rounded-full border-2 border-gray-300 shadow-md group-hover:bg-gray-700 transition-all" />
                     </div>
                   ))}
                 </div>
 
                 <div className="relative md:flex hidden justify-center items-center w-16 flex-shrink-0">
-                  <div className={`inset-0 flex justify-center items-center absolute -mt-7 border-solid h-16 w-16  rounded-full border-y-8 z-10 ${darkMode?"border-gray-600":"border-gray-400"}   `} >
-                    <div className={`h-5 w-5 rounded-full  shadow-[0_0_10px_rgba(6,182,212,1)]  shadow-sky-500 ${darkMode?"bg-blue-200 ":"bg-blue-400 "} `}/>
-                    </div>
-    <div className={`bottom-0 flex justify-center items-center absolute -mb-7 border-solid h-16 w-16  rounded-full border-y-8 z-10 ${darkMode?"border-gray-600":"border-gray-400"}   `} >
-                    <div className={`h-5 w-5 rounded-full  shadow-[0_0_10px_rgba(6,182,212,1)]  shadow-sky-500 ${darkMode?"bg-blue-200 ":"bg-blue-400 "} `}/>
-                    </div>                  <div className={`absolute w-0.5 h-full ${darkMode ? "bg-gradient-to-b from-gray-400/50 to-gray-600/50" : "bg-gradient-to-b from-gray-600/50 to-gray-800/50"}`} />
+                  <div className={`inset-0 flex justify-center items-center absolute -mt-7 border-solid h-16 w-16  rounded-full border-y-8 z-10 ${darkMode ? "border-gray-600" : "border-gray-400"}   `} >
+                    <div className={`h-5 w-5 rounded-full  shadow-[0_0_10px_rgba(6,182,212,1)]  shadow-sky-500 ${darkMode ? "bg-blue-200 " : "bg-blue-400 "} `} />
+                  </div>
+                  <div className={`bottom-0 flex justify-center items-center absolute -mb-7 border-solid h-16 w-16  rounded-full border-y-8 z-10 ${darkMode ? "border-gray-600" : "border-gray-400"}   `} >
+                    <div className={`h-5 w-5 rounded-full  shadow-[0_0_10px_rgba(6,182,212,1)]  shadow-sky-500 ${darkMode ? "bg-blue-200 " : "bg-blue-400 "} `} />
+                  </div>                  <div className={`absolute w-0.5 h-full ${darkMode ? "bg-gradient-to-b from-gray-400/50 to-gray-600/50" : "bg-gradient-to-b from-gray-600/50 to-gray-800/50"}`} />
                   {Years.map((y, i) => (
-                    <div key={i} className={`absolute ${y.offset} whitespace-nowrap text-sm font-semibold text-gray-900 transform -translate-y-1/2 bg-white/80 px-3 py-1 rounded-full`}>
+                    <div key={i} className={`absolute  ${y.offset} whitespace-nowrap text-sm font-semibold text-gray-900 transform -translate-y-1/2 bg-white/80 px-3 py-1 rounded-full`}>
                       {y.year}
                     </div>
                   ))}
@@ -187,6 +185,15 @@ const Home = () => {
           <section id="work" className={`py-12 ${darkMode ? "bg-[#03050e]/90 text-white" : "bg-white text-gray-900"}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-8">
+                                <div
+                  className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border-2 backdrop-blur-sm mb-6 ${darkMode
+                    ? "bg-cyan-500/10 border-cyan-500/30 text-cyan-400"
+                    : "bg-blue-500/10 border-blue-500/30 text-blue-600"
+                    }`}
+                >
+                  <Sparkles className="w-4 h-4 animate-pulse" />
+                  <span className="text-sm font-semibold tracking-wide">My work</span>
+                </div>
                 <h2 className="text-3xl sm:text-4xl font-bold mb-3 flex items-center justify-center gap-3">
                   <img src={`https://img.icons8.com/?size=80&id=58808&format=png&color=${darkMode ? "ffffff" : "000000"}`} alt="projects" className="w-10 h-10" />
                   Featured Projects
