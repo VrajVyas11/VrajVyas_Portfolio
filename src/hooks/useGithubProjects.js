@@ -57,7 +57,7 @@ const useGithubProjects = () => {
           description: constantProject.description, // Ensure constant description is used
           image: constantProject.image, // Ensure constant image is used
           tags: constantProject.tags || [], // Ensure constant tags are used
-          liveLink: constantProject.liveLink || githubProject.liveLink || "", // Prefer constant liveLink
+          liveLink:  githubProject.liveLink || constantProject.liveLink || "", // Prefer constant liveLink
         });
         processedGithubFullNames.add(constantProject.full_name);
       } else {

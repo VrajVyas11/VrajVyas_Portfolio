@@ -1,5 +1,6 @@
 import { 
-  Menu
+  Menu,
+  X
 } from "lucide-react";
 
 // ===== NAVBAR COMPONENT =====
@@ -11,6 +12,34 @@ const NavBar = ({
   darkMode,
   setDarkMode,
 }) => (
+  <>
+      
+    {isMenuOpen && (
+      <div
+        className={`md:hidden fixed inset-0 top-12 w-[85%] justify-self-center z-50 rounded-b-[64px] min-h-fit transition-all duration-500 overflow-hidden ${
+          darkMode ? "bg-[#0a0f1e]/95 border-[#1e3a8a]" : "bg-[#f0f4ff]/95 border-[#bfdbfe]"
+        } border-b-2`}
+      >
+        <div className="px-4 sm:px-6 py-4 space-y-3">
+          {["home", "about", "skills", "education", "work", "contact"].map((section) => (
+            <button
+              key={section}
+              onClick={() => {
+                scrollToSection(section);
+                setIsMenuOpen(false);
+              }}
+              className={`block w-full text-left py-3 capitalize transition-all duration-500 text-base font-medium ${
+                darkMode
+                  ? "text-[#93c5fd] hover:text-[#dbeafe]"
+                  : "text-[#3b82f6] hover:text-[#1e40af]"
+              }`}
+            >
+              {section}
+            </button>
+          ))}
+        </div>
+      </div>
+    )}
   <nav
     className={`fixed top-0 justify-self-center px-8 rounded-b-full py-3 w-full left-0 right-0 z-50 backdrop-blur-md transition-all duration-500 ${
       darkMode
@@ -27,7 +56,7 @@ const NavBar = ({
             className="rounded-full bg-white border-2 border-cyan-500 backdrop-blur-xl w-10 h-10 sm:w-12 sm:h-12 lg:h-14 lg:w-14"
           />
           <span className="hidden sm:inline">Vraj Vyas</span>
-          <span className="sm:hidden">VV</span>
+          <span className="sm:hidden">V.J.Vyas</span>
         </div>
         
         <div className="hidden md:flex space-x-4 lg:space-x-10">
@@ -71,34 +100,8 @@ const NavBar = ({
         </div>
       </div>
     </div>
-    
-    {isMenuOpen && (
-      <div
-        className={`md:hidden transition-all duration-500 overflow-hidden ${
-          darkMode ? "bg-[#0a0f1e]/95 border-[#1e3a8a]" : "bg-[#f0f4ff]/95 border-[#bfdbfe]"
-        } border-b-2`}
-      >
-        <div className="px-4 sm:px-6 py-4 space-y-3">
-          {["home", "about", "skills", "education", "work", "contact"].map((section) => (
-            <button
-              key={section}
-              onClick={() => {
-                scrollToSection(section);
-                setIsMenuOpen(false);
-              }}
-              className={`block w-full text-left py-3 capitalize transition-all duration-500 text-base font-medium ${
-                darkMode
-                  ? "text-[#93c5fd] hover:text-[#dbeafe]"
-                  : "text-[#3b82f6] hover:text-[#1e40af]"
-              }`}
-            >
-              {section}
-            </button>
-          ))}
-        </div>
-      </div>
-    )}
   </nav>
+  </>
 );
 
 export default NavBar

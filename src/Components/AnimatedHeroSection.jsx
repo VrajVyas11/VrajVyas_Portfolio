@@ -29,7 +29,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
     const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
-        const roles = ["Full Stack Developer", "DevOps Engineer", "UI/UX Enthusiast", "Problem Solver"];
+        const roles = ["Full Stack Developer", "DevOps Engineer", "UI/UX Enthusiast", "Frontend Developer","Backend Developer"];
 
         const currentRoleText = roles[currentRole];
 
@@ -141,7 +141,7 @@ const AnimatedHeroSection = ({ darkMode }) => {
                         </p>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-wrap items-center gap-4 pt-4">
+                        <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
                             <Button
                                 onClick={() =>
                                     window.open("/Resume/VrajVyasResume.pdf", "_blank")

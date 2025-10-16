@@ -10,7 +10,7 @@ const EducationCard = ({
   details,
   darkMode = true,
 }) => {
-  const [ref, inView] = useInView({ threshold: 0.3 });
+  const [ref, inView] = useInView({ threshold: 0.1 });
 
   return (
     <article
@@ -48,7 +48,7 @@ const EducationCard = ({
         </div>
 
         {/* Content */}
-        <div className="flex-1 min-w-0">
+        <div className=" text-center sm:text-left flex-1 min-w-0">
           {/* Degree */}
           <h3
             className={`text-2xl font-black leading-tight mb-2 ${
@@ -60,12 +60,12 @@ const EducationCard = ({
 
           {/* Institution & Year */}
           <div className="flex flex-wrap items-center gap-3 mb-3">
-            <div className="flex items-center gap-2">
+            <div className="flex  items-center gap-2">
               <MapPin
                 className={`w-4 h-4 ${darkMode ? "text-cyan-400" : "text-blue-600"}`}
               />
               <p
-                className={`text-sm font-medium ${
+                className={`text-sm  font-medium ${
                   darkMode ? "text-gray-300" : "text-gray-700"
                 }`}
               >
