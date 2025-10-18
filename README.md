@@ -92,7 +92,7 @@ Getting this bad boy running? Easier than brewing coffee. ☕
    ```
 
 4. **Open the Portal** (browser time!):
-   Head to [http://localhost:3000](http://localhost:3000) and watch it sparkle. 🌟
+   Head to [http://localhost:5173](http://localhost:5173) and watch it sparkle. 🌟
 
 *Trouble? Ping me – I'm all ears (and code).*
 
